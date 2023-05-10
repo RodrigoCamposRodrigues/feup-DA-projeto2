@@ -40,16 +40,15 @@ bool Graph::isDirected() const {
  */
 bool Graph::addVertex(int vertex, double lat, double longi) {
     // check if index already exists
-    if(vertex < 0 || vertex >= num_vertices) {
+    if(vertex < 0 || vertex > num_vertices) {
         std::cout << "Invalid vertex" << std::endl;
         return false;
     }
     // check if vertex already exists
-    if(vertices[vertex].vertex != -1) {
-        std::cout << "Vertex already exists" << std::endl;
-        return false;
-    }
-    
+    // if(vertices[vertex].vertex != -1) {
+    //     std::cout << "Vertex already exists" << std::endl;
+    //     return false;
+    // }
     vertices.push_back({
         vertex,
         lat,
@@ -146,10 +145,10 @@ void Graph::removeAdjEdges(int v) {
  */
 void Graph::printGraph()
 {
-    for(auto v : vertices) {
-        std::cout << v.vertex << std::endl;
-        for(auto e : v.adj) {
-            std::cout << vertices[e.vertex].vertex << " " << e.distance << std::endl;
+    for (auto v : vertices) {
+        std::cout << "Node " << v.vertex << " (" << v.lat << ", " << v.longi << ")" << std::endl;
+        for (auto e : v.adj) {
+            std::cout << "  -> Node " << e.vertex << " distance " << e.distance << std::endl;
         }
     }
 }
