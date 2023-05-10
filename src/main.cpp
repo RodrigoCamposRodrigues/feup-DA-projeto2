@@ -4,10 +4,10 @@
 #include "manager.h"
 
 int main() {
-    Manager manager("../dataset/Real-World-Graphs/graph1/nodes.csv", "../dataset/Real-World-Graphs/graph1/edges.csv");
+    Manager manager("../dataset/Toy-Graphs/shipping.csv");
 
-    manager.initialize_all();
+    manager.initialize_selected();
     manager.printGraph();
-
+    //std::cout << manager.backtrack_tsp() << std::endl;
     return 0;
 }

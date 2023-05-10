@@ -1,5 +1,4 @@
 #include "graph.h"
-#include <iostream>
 
 
 /** Construtor da classe Graph.
@@ -40,10 +39,21 @@ bool Graph::isDirected() const {
  */
 bool Graph::addVertex(int vertex, double lat, double longi) {
     // check if index already exists
-    if(vertex < 0 || vertex > num_vertices) {
+    if(vertex < 0) {
         std::cout << "Invalid vertex" << std::endl;
         return false;
     }
+
+    if(vertex > num_vertices){
+        num_vertices = vertex + 1;
+        vertices.push_back({
+           vertex,
+           lat,
+           longi,
+           std::list<edgeNode>()
+       });
+    }
+
     // check if vertex already exists
     // if(vertices[vertex].vertex != -1) {
     //     std::cout << "Vertex already exists" << std::endl;
@@ -57,6 +67,16 @@ bool Graph::addVertex(int vertex, double lat, double longi) {
     });
     num_vertices++;
     return true;
+}
+
+//returns true if vertex exists and false otherwise
+bool Graph::vertexExists(int vertexID){
+    for (const auto& vertex : vertices) {
+        if (vertex.vertex == vertexID) {
+            return true;
+        }
+    }
+    return false;
 }
 
 /** Muda as informações de um vertice no grafo.

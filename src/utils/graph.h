@@ -27,6 +27,9 @@ class Graph {
 
         bool isDirected() const;
 
+        // vertex exists
+        bool vertexExists(int vertexID);
+
         void setVertexInfo(int vertex, double lat, double longi);
 
         bool addVertex(int vertex, double lat, double longi);
@@ -39,6 +42,8 @@ class Graph {
         void removeAdjEdges(int v);
 
         void printGraph();
+
+        void backtrack_tsp(std::vector<bool>& visited, int current, int n, int count, int cost, double& ans);
 
     protected:
         int num_vertices;

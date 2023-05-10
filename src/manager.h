@@ -7,14 +7,20 @@
 #include <algorithm>
 
 #include "utils/csv_reader.h"
+#include "utils/graph.h"
 
 class Manager {
 public:
+
+    Manager();
     Manager (const char *nodes_file, const char *edges_file);
+    Manager (const char *f_name);
 
     void initialize_all();
 
-    void initialize_selected(std::vector<std::string> lines); // TODO implement
+    void initialize_selected(); // TODO implement
+
+    double backtrack_tsp();
 
     void printGraph();
 
