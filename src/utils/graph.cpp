@@ -167,6 +167,10 @@ void Graph::removeAdjEdges(int v) {
  */
 void Graph::printGraph()
 {
+    std::sort(vertices.begin(), vertices.end(), [](const vertexNode& a, const vertexNode& b) {
+        return a.vertex < b.vertex;
+    });
+
     for (auto v : vertices) {
         std::cout << "Node " << v.vertex << " (" << v.lat << ", " << v.longi << ") " << "label: " << v.label << std::endl;
         for (auto e : v.adj) {
