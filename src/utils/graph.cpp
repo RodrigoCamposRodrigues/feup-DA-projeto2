@@ -37,7 +37,7 @@ bool Graph::isDirected() const {
 /** Adiciona um vertice ao grafo.
  * Este método tem complexidade de tempo O(1).
  */
-bool Graph::addVertex(int vertex, double lat, double longi) {
+bool Graph::addVertex(int vertex, double lat, double longi, std::string label) {
     // check if index already exists
     if(vertex < 0) {
         std::cout << "Invalid vertex" << std::endl;
@@ -50,6 +50,7 @@ bool Graph::addVertex(int vertex, double lat, double longi) {
            vertex,
            lat,
            longi,
+           label,
            std::list<edgeNode>()
        });
     }
@@ -63,6 +64,7 @@ bool Graph::addVertex(int vertex, double lat, double longi) {
         vertex,
         lat,
         longi,
+        label,
         std::list<edgeNode>()
     });
     num_vertices++;
@@ -166,7 +168,7 @@ void Graph::removeAdjEdges(int v) {
 void Graph::printGraph()
 {
     for (auto v : vertices) {
-        std::cout << "Node " << v.vertex << " (" << v.lat << ", " << v.longi << ")" << std::endl;
+        std::cout << "Node " << v.vertex << " (" << v.lat << ", " << v.longi << ") " << "label: " << v.label << std::endl;
         for (auto e : v.adj) {
             std::cout << "  -> Node " << e.vertex << " distance " << e.distance << std::endl;
         }

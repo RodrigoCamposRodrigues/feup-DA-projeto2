@@ -32,7 +32,7 @@ class Graph {
 
         void setVertexInfo(int vertex, double lat, double longi);
 
-        bool addVertex(int vertex, double lat, double longi);
+        bool addVertex(int vertex, double lat, double longi, std::string label);
 
         // add edge from v1 to v2, and from v2 to v1 if directed
         void addEdge(int v1, int v2, double distance);
@@ -59,6 +59,7 @@ class Graph {
             int vertex;
             double lat;
             double longi;
+            std::string label;
 
             std::list<edgeNode> adj;
         };
