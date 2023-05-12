@@ -4,9 +4,9 @@
 #include "manager.h"
 
 int main() {
-    Manager manager("../dataset/Toy-Graphs/shipping.csv");
+    Manager manager("../dataset/Real-World-Graphs/graph1/reduced_nodes.csv", "../dataset/Real-World-Graphs/graph1/reduced_edges.csv");
 
-    manager.initialize_selected();
+    manager.initialize_all();
     manager.printGraph();
     //std::cout << manager.backtrack_tsp() << std::endl;
     return 0;

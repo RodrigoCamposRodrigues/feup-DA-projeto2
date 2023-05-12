@@ -13,14 +13,14 @@ Manager::Manager(const char *f_name) :
 void Manager::initialize_all(){
     std::vector<std::string> line;
 
-    while(!nodes_reader.is_eof()){
+    while(!nodes_reader.is_eof() && !nodes_reader.is_error()){
         line = nodes_reader.read_line();
         if(line.size() == 3){
             delivery_graph.addVertex(std::stoi(line[0]), std::stod(line[1]), std::stod(line[2]));
         }
     }
 
-    while(!edges_reader.is_eof()){
+    while(!edges_reader.is_eof() && !edges_reader.is_error()){
         line = edges_reader.read_line();
         if(line.size() == 3){
             delivery_graph.addEdge(std::stoi(line[0]), std::stoi(line[1]), std::stod(line[2]));

@@ -3,11 +3,11 @@
 #include <iostream>
 
 CsvReader::CsvReader(std::string fname) : file_name(fname) {
-    this->file_read = std::fstream (fname);
+    this->file_read = std::fstream(fname);
     // this->file_write = std::fstream(fname, std::ios::app);
 
     // simple error handling
-    if(!this->file_read /*|| !this->file_write*/) {
+    if(!this->file_read.is_open() /*|| !this->file_write*/) {
         this->error = true;
         return;
     }
