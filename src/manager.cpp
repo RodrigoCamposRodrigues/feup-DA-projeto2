@@ -28,61 +28,57 @@ void Manager::initialize_all(){
     }   
 }
 
-void Manager::initialize_selected(bool file_column_csv){
+void Manager::initialize_selected(){
     std::vector<std::string> line;
 
-    if(file_column_csv){
-        while(!nodes_reader.is_eof() && !nodes_reader.is_error()){
-            line = nodes_reader.read_line();
-            bool can_add_edge = false;
-            if(!delivery_graph.vertexExists(std::stoi(line[0]))){
-                delivery_graph.addVertex(std::stoi(line[0]), 0, 0, line[3]);
+    while(!edges_reader.is_eof() && !edges_reader.is_error()){
+        line = edges_reader.read_line();
+        bool can_add_edge = false;
 
-                if(!delivery_graph.vertexExists(std::stoi(line[1]))){
+        if(line.size() == 5) {
+            //se a origem não existe, adiciono
+            if (!delivery_graph.vertexExists(std::stoi(line[0]))) {
+                delivery_graph.addVertex(std::stoi(line[0]), 0, 0, line[3]);
+                //se o destino não existe, adiciono
+                if (!delivery_graph.vertexExists(std::stoi(line[1]))) {
                     delivery_graph.addVertex(std::stoi(line[1]), 0, 0, line[4]);
+                    can_add_edge = true;
+                } else can_add_edge = true;
+                //Se o destino não existe mas a origem existe, adiciono o destino
+            } else if (!delivery_graph.vertexExists(std::stoi(line[1]))) {
+                delivery_graph.addVertex(std::stoi(line[1]), 0, 0, line[4]);
+                can_add_edge = true;
+            } else can_add_edge = true;
+            //Se os dois vertices existem, adiciono a aresta
+            if (can_add_edge) {
+                delivery_graph.addEdge(std::stoi(line[0]), std::stoi(line[1]), std::stod(line[2]));
+            }
+        }
+        else if(line.size() == 3){
+            //se a origem nao existe, adiciona a origem
+            if(!delivery_graph.vertexExists(std::stoi(line[0]))){
+                delivery_graph.addVertex(std::stoi(line[0]), 0, 0, "");
+                //se o destino nao existe, adiciona o destino
+                if(!delivery_graph.vertexExists(std::stoi(line[1]))){
+                    delivery_graph.addVertex(std::stoi(line[1]), 0, 0, "");
                     can_add_edge = true;
                 }
                 else can_add_edge = true;
             }
+            //se o destino nao existe, mas a origem existe, adiciona o destino
             else if(!delivery_graph.vertexExists(std::stoi(line[1]))){
-                delivery_graph.addVertex(std::stoi(line[1]), 0, 0, line[4]);
+                delivery_graph.addVertex(std::stoi(line[1]), 0, 0, "");
                 can_add_edge = true;
             }
             else can_add_edge = true;
 
             if(can_add_edge){
                 delivery_graph.addEdge(std::stoi(line[0]), std::stoi(line[1]), std::stod(line[2]));
+                std::cout << "Added edge" << line[0] << " " << line[1] << " " << line[2] << std::endl;
             }
         }
     }
-    else{
-        while(!edges_reader.is_eof()){
-            line = edges_reader.read_line();
-            if(line.size() == 3){
-                if(!delivery_graph.vertexExists(std::stoi(line[0]))){
-                    delivery_graph.addVertex(std::stoi(line[0]), 0, 0, "");
 
-                    if(!delivery_graph.vertexExists(std::stoi(line[1]))) {
-                        delivery_graph.addVertex(std::stoi(line[1]), 0, 0, "");
-                        delivery_graph.addEdge(std::stoi(line[0]), std::stoi(line[1]), std::stod(line[2]));
-                        continue;
-                    }
-                    else if(delivery_graph.vertexExists(std::stoi(line[1]))) {
-                        delivery_graph.addEdge(std::stoi(line[0]), std::stoi(line[1]), std::stod(line[2]));
-                        continue;
-                    }
-                }
-                else if(!delivery_graph.vertexExists(std::stoi(line[1]))) {
-                    delivery_graph.addVertex(std::stoi(line[1]), 0, 0,"");
-                    delivery_graph.addEdge(std::stoi(line[0]), std::stoi(line[1]), std::stod(line[2]));
-                    continue;
-                }
-                else if(delivery_graph.vertexExists(std::stoi(line[0])) && delivery_graph.vertexExists(std::stoi(line[1]))) {
-                    delivery_graph.addEdge(std::stoi(line[0]), std::stoi(line[1]), std::stod(line[2]));
-                }
-            }
-        } 
-    }
 }
 
 double Manager::backtrack_tsp(){

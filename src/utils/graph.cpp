@@ -44,7 +44,7 @@ bool Graph::addVertex(int vertex, double lat, double longi, std::string label) {
         return false;
     }
 
-    if(vertex > num_vertices){
+    if(vertex >= num_vertices){
         num_vertices = vertex + 1;
         vertices.push_back({
            vertex,
@@ -53,6 +53,10 @@ bool Graph::addVertex(int vertex, double lat, double longi, std::string label) {
            label,
            std::list<edgeNode>()
        });
+        std::sort(vertices.begin(), vertices.end(), [](const vertexNode& a, const vertexNode& b) {
+            return a.vertex < b.vertex;
+        });
+        return true;
     }
 
     // check if vertex already exists
@@ -68,6 +72,9 @@ bool Graph::addVertex(int vertex, double lat, double longi, std::string label) {
         std::list<edgeNode>()
     });
     num_vertices++;
+    std::sort(vertices.begin(), vertices.end(), [](const vertexNode& a, const vertexNode& b) {
+        return a.vertex < b.vertex;
+    });
     return true;
 }
 
@@ -167,6 +174,10 @@ void Graph::removeAdjEdges(int v) {
  */
 void Graph::printGraph()
 {
+    std::sort(vertices.begin(), vertices.end(), [](const vertexNode& a, const vertexNode& b) {
+        return a.vertex < b.vertex;
+    });
+
     for (auto v : vertices) {
         std::cout << "Node " << v.vertex << " (" << v.lat << ", " << v.longi << ") " << "label: " << v.label << std::endl;
         for (auto e : v.adj) {
