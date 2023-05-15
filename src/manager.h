@@ -18,7 +18,7 @@ public:
 
     void initialize_all();
 
-    void initialize_selected(bool five_column_csv); // TODO implement
+    void initialize_selected(); // TODO implement
 
     double backtrack_tsp();
 
