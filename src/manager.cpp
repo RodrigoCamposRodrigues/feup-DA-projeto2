@@ -74,7 +74,6 @@ void Manager::initialize_selected(){
 
             if(can_add_edge){
                 delivery_graph.addEdge(std::stoi(line[0]), std::stoi(line[1]), std::stod(line[2]));
-                std::cout << "Added edge" << line[0] << " " << line[1] << " " << line[2] << std::endl;
             }
         }
     }
