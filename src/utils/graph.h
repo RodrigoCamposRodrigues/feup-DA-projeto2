@@ -43,7 +43,7 @@ class Graph {
 
         void printGraph();
 
-        void backtrack_tsp(std::vector<bool>& visited, int current, int n, int count, int cost, double& ans);
+        void tsp_backtrack(std::vector<int>& path, std::vector<bool>& visited, double& min_cost, double cost_so_far);
 
     protected:
         int num_vertices;

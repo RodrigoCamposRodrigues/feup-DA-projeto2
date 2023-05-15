@@ -112,12 +112,12 @@ void Graph::addEdge(int v1, int v2, double distance) {
         }
     }
 
-    vertices[v1].adj.push_back(edgeNode{v2, distance});
+    vertices[v1].adj.emplace_back(edgeNode{v2, distance});
 
-    // if(!directed) {
-    //     vertices[v2].adj.push_back(edgeNode{v1, distance});
-    //     num_edges++;
-    // }
+    if(directed) {
+        vertices[v2].adj.emplace_back(edgeNode{v1, distance});
+        num_edges++;
+    }
 
     num_edges++;
 }

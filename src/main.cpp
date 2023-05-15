@@ -8,6 +8,6 @@ int main() {
 
     manager.initialize_selected();
     manager.printGraph();
-    //std::cout << manager.backtrack_tsp() << std::endl;
+    std::cout << manager.backtrack_tsp() << std::endl;
     return 0;
 }

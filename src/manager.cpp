@@ -3,12 +3,12 @@
 Manager::Manager(const char *nodes_file, const char *edges_file) : 
     nodes_reader(nodes_file),
     edges_reader(edges_file),
-    delivery_graph(false) {}
+    delivery_graph(true) {}
 
 Manager::Manager(const char *f_name) : 
     edges_reader(f_name),
     nodes_reader(f_name),
-    delivery_graph(false) {}
+    delivery_graph(true) {}
 
 void Manager::initialize_all(){
     std::vector<std::string> line;
@@ -81,11 +81,16 @@ void Manager::initialize_selected(){
 }
 
 double Manager::backtrack_tsp(){
+    double min_cost = std::numeric_limits<double>::max();
+    std::vector<int> path = {0}; // Start from vertex 0
     std::vector<bool> visited(delivery_graph.getNumVertices(), false);
-    visited[0] = true;
-    double ans = INT_MAX;
-    delivery_graph.backtrack_tsp(visited, 0, delivery_graph.getNumVertices(), 1, 0, ans);
-    return ans;
+    visited[0] = true; // Mark the starting vertex as visited
+
+    // Call the recursive function to find the minimum cost Hamiltonian cycle
+    delivery_graph.tsp_backtrack(path, visited, min_cost, 0.0);
+
+    // Return the minimum cost
+    return min_cost;
 }
 
 void Manager::printGraph(){
