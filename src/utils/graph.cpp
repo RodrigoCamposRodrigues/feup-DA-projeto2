@@ -46,17 +46,7 @@ bool Graph::addVertex(int vertex, double lat, double longi, std::string label) {
 
     if(vertex >= num_vertices){
         num_vertices = vertex + 1;
-        vertices.push_back({
-           vertex,
-           lat,
-           longi,
-           label,
-           std::list<edgeNode>()
-       });
-        std::sort(vertices.begin(), vertices.end(), [](const vertexNode& a, const vertexNode& b) {
-            return a.vertex < b.vertex;
-        });
-        return true;
+        num_vertices--;
     }
 
     // check if vertex already exists
@@ -204,3 +194,99 @@ void Graph::printGraph()
 //     }
 //     // std::cout << nedges << std::endl;
 // }
+
+int Graph::minKey(std::vector<double> &key, std::vector<bool> &inMST){
+    double min = std::numeric_limits<double>::max();
+    int minIndex = -1;
+    int numVertices = key.size();
+
+    for (int v = 0; v < numVertices; ++v) {
+        if (!inMST[v] && key[v] < min) {
+            min = key[v];
+            minIndex = v;
+        }
+    }
+
+    return minIndex;
+}
+
+void Graph::primMST(std::vector<int>& parent) {
+
+    std::vector<double> key(num_vertices, std::numeric_limits<double>::max());
+    std::vector<bool> inMST(num_vertices, false);
+
+    int startVertex = 0;  // Starting vertex for MST
+
+    key[startVertex] = 0.0;  // Start with the first vertex
+
+    for (int count = 0; count < num_vertices - 1; ++count) {
+        int u = minKey(key, inMST);
+        inMST[u] = true;
+
+        // Update key and parent index of adjacent vertices
+        for (const edgeNode& edge : vertices[u].adj) {
+            int v = edge.vertex;
+            double weight = edge.distance;
+
+            if (!inMST[v] && weight < key[v]) {
+                parent[v] = u;
+                key[v] = weight;
+            }
+        }
+    }
+
+    // Print the MST
+    std::cout << "Minimum Spanning Tree:" << std::endl;
+    for (int i = 1; i < num_vertices; ++i) {
+        std::cout << parent[i] << " - " << i << std::endl;
+    }
+}
+
+void Graph::dfs(int current, const std::vector<int> &parent, std::vector<bool> &visited, std::stack<int> &cityStack, std::vector<int> &path) {
+    visited[current] = true;
+    cityStack.push(current);
+
+    while (!cityStack.empty()) {
+        int city = cityStack.top();
+        cityStack.pop();
+
+        // Process the city or print its order
+        path.push_back(city);
+
+        for (int neighbor = 0; neighbor < parent.size(); ++neighbor) {
+            if (parent[neighbor] == city && !visited[neighbor]) {
+                visited[neighbor] = true;
+                cityStack.push(neighbor);
+            }
+        }
+    }
+}
+
+double Graph::calculateTotalDistance(const std::vector<int> &path) {
+    double totalDistance = 0.0;
+
+    // Calculate the total distance
+    for (int i = 0; i < path.size() - 1; ++i) {
+        int v1 = path[i];
+        int v2 = path[i + 1];
+
+        for (const edgeNode& edge : vertices[v1].adj) {
+            if (edge.vertex == v2) {
+                totalDistance += edge.distance;
+                break;
+            }
+        }
+    }
+
+    //add final distance to total distance
+    int final_city = path.back();
+    for(const edgeNode& edge : vertices[final_city].adj){
+        if(edge.vertex == path[0]){
+            totalDistance += edge.distance;
+            break;
+        }
+    }
+
+    return totalDistance;
+}
+
