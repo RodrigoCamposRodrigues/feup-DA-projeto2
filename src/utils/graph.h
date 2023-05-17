@@ -9,7 +9,8 @@
 #include <algorithm>
 #include <unordered_map>
 #include <map>
-#include <climits>
+#include <limits>
+#include <stack>
 
 struct Edge{
     int origin;
@@ -44,6 +45,16 @@ class Graph {
         void printGraph();
 
         void tsp_backtrack(std::vector<int>& path, std::vector<bool>& visited, double& min_cost, double cost_so_far);
+
+        int minKey(std::vector<double>& key, std::vector<bool>& inMST);
+
+        void primMST(std::vector<int>& parent);
+
+        void dfs(int current, const std::vector<int>& parent, std::vector<bool>& visited, std::stack<int>& cityStack, std::vector<int>& path);
+
+        double calculateTotalDistance(const std::vector<int>& path);
+
+        double triangularApproximation();
 
     protected:
         int num_vertices;

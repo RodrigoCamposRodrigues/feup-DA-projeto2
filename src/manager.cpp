@@ -97,3 +97,7 @@ void Manager::printGraph(){
     delivery_graph.printGraph();
 }
 
+double Manager::triangularApproximation() {
+    return delivery_graph.triangularApproximation();
+}
+

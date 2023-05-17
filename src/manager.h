@@ -28,6 +28,8 @@ public:
 
     void test();
 
+    double triangularApproximation();
+
 private:
     CsvReader nodes_reader;
     CsvReader edges_reader;

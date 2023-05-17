@@ -35,6 +35,31 @@ void Graph::tsp_backtrack(std::vector<int>& path, std::vector<bool>& visited, do
     }
 }
 
+double Graph::triangularApproximation() {
+    // Create the MST using Prim's algorithm
+    std::vector<int> parent(num_vertices, -1);
+    primMST(parent);
+
+    // Perform DFS traversal to obtain the order of visited cities
+    std::vector<bool> visited(num_vertices, false);
+    std::vector<int> path;
+    std::stack<int> cityStack;
+    dfs(0, parent, visited, cityStack, path);
+
+    // Print the order of visited cities
+    std::cout << "Order of visited cities: ";
+    for (int i = 0; i < path.size(); ++i) {
+        std::cout << path[i];
+        if (i != path.size() - 1)
+            std::cout << " -> ";
+    }
+    std::cout << " -> 0"<< std::endl;
+
+    double total_distance = calculateTotalDistance(path);
+
+    return total_distance;
+}
+
 
 
 
