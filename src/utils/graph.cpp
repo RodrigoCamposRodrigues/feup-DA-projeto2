@@ -59,7 +59,7 @@ bool Graph::addVertex(int vertex, double lat, double longi, std::string label) {
         lat,
         longi,
         label,
-        std::list<edgeNode>()
+        std::vector<edgeNode>()
     });
     num_vertices++;
     std::sort(vertices.begin(), vertices.end(), [](const vertexNode& a, const vertexNode& b) {
@@ -102,10 +102,18 @@ void Graph::addEdge(int v1, int v2, double distance) {
         }
     }
 
-    vertices[v1].adj.emplace_back(edgeNode{v2, distance});
+    for(int i = 0; i < vertices.size(); i++){
+        if(vertices[i].vertex == v1){
+            vertices[i].adj.emplace_back(edgeNode{v2, distance});
+        }
+    }
 
     if(directed) {
-        vertices[v2].adj.emplace_back(edgeNode{v1, distance});
+        for(int i = 0; i < vertices.size(); i++){
+            if(vertices[i].vertex == v2){
+                vertices[i].adj.emplace_back(edgeNode{v1, distance});
+            }
+        }
         num_edges++;
     }
 
@@ -137,9 +145,9 @@ void Graph::removeEdge(int v1, int v2) {
     }
 
     // remove edge
-    vertices[v1].adj.remove_if([v2](edgeNode e) { return e.vertex == v2; });
+    //vertices[v1].adj.remove_if([v2](edgeNode e) { return e.vertex == v2; });
     if (!directed) {
-        vertices[v2].adj.remove_if([v1](edgeNode e) { return e.vertex == v1; });
+        //vertices[v2].adj.remove_if([v1](edgeNode e) { return e.vertex == v1; });
         num_edges--;
     }
 
@@ -153,7 +161,7 @@ void Graph::removeEdge(int v1, int v2) {
 void Graph::removeAdjEdges(int v) {
     // Remove all adjacent edges going from and to v
     for (auto e: vertices[v].adj) {
-        vertices[e.vertex].adj.remove_if([v](edgeNode e) { return e.vertex == v; });
+        //vertices[e.vertex].adj.remove_if([v](edgeNode e) { return e.vertex == v; });
         num_edges--;
     }
     vertices[v].adj.clear();
