@@ -4,11 +4,11 @@
 #include "manager.h"
 
 int main() {
-    Manager manager("../dataset/Toy-Graphs/stadiums.csv");
+    Manager manager("../dataset/Toy-Graphs/shipping.csv");
 
     manager.initialize_selected();
-    //manager.printGraph();
-    //std::cout << manager.backtrack_tsp() << std::endl;
-    std::cout << manager.triangularApproximation() << std::endl;
+    manager.printGraph();
+    std::cout << manager.backtrack_tsp() << std::endl;
+    //std::cout << manager.triangularApproximation() << std::endl;
     return 0;
 }

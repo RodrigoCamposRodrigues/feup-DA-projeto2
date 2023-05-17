@@ -72,10 +72,10 @@ class Graph {
             double longi;
             std::string label;
 
-            std::list<edgeNode> adj;
+            std::vector<edgeNode> adj;
         };
 
-        std::vector<vertexNode> vertices; 
+        std::vector<vertexNode> vertices;
 };
 
 #endif
