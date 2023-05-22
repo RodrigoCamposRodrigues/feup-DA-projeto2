@@ -1,8 +1,8 @@
 #include "utils/graph.h"
 
-void Graph::tsp_backtrack(std::vector<int>& path, std::vector<bool>& visited, double& min_cost, double cost_so_far) {
+void Graph::tsp_backtrack(std::vector<int>& path, std::vector<bool>& visited, double &min_cost, double cost_so_far) {
     // Base case: if all vertices have been visited, check if the current cycle is a Hamiltonian cycle
-    if (path.size() == num_vertices) {
+    if (path.size() == vertices.size()) {
         // Check if the last vertex is adjacent to the starting vertex
         int start_vertex = path.front();
         int last_vertex = path.back();
@@ -37,11 +37,11 @@ void Graph::tsp_backtrack(std::vector<int>& path, std::vector<bool>& visited, do
 
 double Graph::triangularApproximation() {
     // Create the MST using Prim's algorithm
-    std::vector<int> parent(num_vertices, -1);
+    std::vector<int> parent(vertices.size(), -1);
     primMST(parent);
 
     // Perform DFS traversal to obtain the order of visited cities
-    std::vector<bool> visited(num_vertices, false);
+    std::vector<bool> visited(vertices.size(), false);
     std::vector<int> path;
     std::stack<int> cityStack;
     dfs(0, parent, visited, cityStack, path);

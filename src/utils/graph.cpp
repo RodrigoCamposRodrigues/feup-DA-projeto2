@@ -220,14 +220,14 @@ int Graph::minKey(std::vector<double> &key, std::vector<bool> &inMST){
 
 void Graph::primMST(std::vector<int>& parent) {
 
-    std::vector<double> key(num_vertices, std::numeric_limits<double>::max());
-    std::vector<bool> inMST(num_vertices, false);
+    std::vector<double> key(vertices.size(), std::numeric_limits<double>::max());
+    std::vector<bool> inMST(vertices.size(), false);
 
     int startVertex = 0;  // Starting vertex for MST
 
     key[startVertex] = 0.0;  // Start with the first vertex
 
-    for (int count = 0; count < num_vertices - 1; ++count) {
+    for (int count = 0; count < vertices.size() - 1; ++count) {
         int u = minKey(key, inMST);
         inMST[u] = true;
 
@@ -245,7 +245,7 @@ void Graph::primMST(std::vector<int>& parent) {
 
     // Print the MST
     std::cout << "Minimum Spanning Tree:" << std::endl;
-    for (int i = 1; i < num_vertices; ++i) {
+    for (int i = 1; i < vertices.size(); ++i) {
         std::cout << parent[i] << " - " << i << std::endl;
     }
 }
