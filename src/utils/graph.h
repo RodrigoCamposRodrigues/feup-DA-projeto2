@@ -57,7 +57,6 @@ class Graph {
         double triangularApproximation();
 
     protected:
-        int num_vertices;
         int num_edges;
         bool directed;
 
