@@ -5,7 +5,7 @@
  * Este método tem complexidade de tempo O(1).
  * @param dir true se o grafo for direcionado, false caso contrário.
 */
-Graph::Graph(bool dir) : num_vertices(0), num_edges(0), directed(dir) {
+Graph::Graph(bool dir) : num_edges(0), directed(dir) {
     vertices = std::vector<vertexNode>();
 }      
 
@@ -15,7 +15,7 @@ Graph::Graph(bool dir) : num_vertices(0), num_edges(0), directed(dir) {
  * @return número de vértices do grafo.
 */
 int Graph::getNumVertices() const {
-    return num_vertices;
+    return vertices.size();
 }
 
 /** Retorna o número de arestas do grafo.
@@ -44,11 +44,6 @@ bool Graph::addVertex(int vertex, double lat, double longi, std::string label) {
         return false;
     }
 
-    if(vertex >= num_vertices){
-        num_vertices = vertex + 1;
-        num_vertices--;
-    }
-
     // check if vertex already exists
     // if(vertices[vertex].vertex != -1) {
     //     std::cout << "Vertex already exists" << std::endl;
@@ -61,7 +56,6 @@ bool Graph::addVertex(int vertex, double lat, double longi, std::string label) {
         label,
         std::vector<edgeNode>()
     });
-    num_vertices++;
     std::sort(vertices.begin(), vertices.end(), [](const vertexNode& a, const vertexNode& b) {
         return a.vertex < b.vertex;
     });
@@ -90,7 +84,13 @@ void Graph::setVertexInfo(int vertex, double lat, double longi) {
  * Este método tem complexidade de tempo O(E), onde E é o número de arestas.
  */
 void Graph::addEdge(int v1, int v2, double distance) {
-    if(v1 < 0 || v1 >= num_vertices || v2 < 0 || v2 >= num_vertices) {
+
+    auto it = max_element(vertices.begin(), vertices.end(), [](const vertexNode& a, const vertexNode& b) {
+        return a.vertex < b.vertex;
+    });
+    int numVertices = it->vertex + 1;
+
+    if(v1 < 0 || v1 >= numVertices|| v2 < 0 || v2 >= numVertices) {
         std::cout << "Invalid vertex" << std::endl;
         return;
     }
@@ -126,7 +126,13 @@ void Graph::addEdge(int v1, int v2, double distance) {
  * @param v2
  */
 void Graph::removeEdge(int v1, int v2) {
-    if (v1 < 0 || v1 >= num_vertices || v2 < 0 || v2 >= num_vertices) {
+
+    auto it = max_element(vertices.begin(), vertices.end(), [](const vertexNode& a, const vertexNode& b) {
+        return a.vertex < b.vertex;
+    });
+    int numVertices = it->vertex + 1;
+
+    if (v1 < 0 || v1 >= numVertices || v2 < 0 || v2 >= numVertices) {
         std::cout << "Invalid vertex" << std::endl;
         return;
     }
