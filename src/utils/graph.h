@@ -11,6 +11,9 @@
 #include <map>
 #include <limits>
 #include <stack>
+#include <cmath>
+
+#define EARTH_RADIUS 6371.0
 
 struct Edge{
     int origin;
@@ -55,6 +58,14 @@ class Graph {
         double calculateTotalDistance(const std::vector<int>& path);
 
         double triangularApproximation();
+
+        void connect_all_nodes();
+
+        bool check_if_nodes_are_connected(int v1, int v2);
+
+        double degrees_to_radians(double degrees);
+
+        double haversine(double lat1, double lon1, double lat2, double lon2);
 
     protected:
         int num_edges;

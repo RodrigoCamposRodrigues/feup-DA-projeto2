@@ -7,12 +7,9 @@
 #include <algorithm>
 #include <limits>
 #include <iostream>
-#include <cmath>
 
 #include "utils/csv_reader.h"
 #include "utils/graph.h"
-
-#define EARTH_RADIUS 6371.0
 
 class Manager {
 public:

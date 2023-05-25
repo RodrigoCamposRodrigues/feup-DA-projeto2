@@ -25,7 +25,9 @@ void Manager::initialize_graphs_with_2_files(){
         if(line.size() == 3){
             delivery_graph.addEdge(std::stoi(line[0]), std::stoi(line[1]), std::stod(line[2]));
         }
-    }   
+    }
+
+    delivery_graph.connect_all_nodes();   
 }
 
 void Manager::initialize_graphs_with_1_file(){
@@ -113,19 +115,7 @@ void Manager::triangularApproximation() {
     std::cout << "Execution Time: " << double(end - start) / CLOCKS_PER_SEC << " seconds" << std::endl;
 }
 
-double Manager::degrees_to_radians(double degrees){
-    return degrees * M_PI / 180;
-}
 
-double Manager::haversine(double lat1, double lon1, double lat2, double lon2){
-    double dLat = degrees_to_radians(lat2 - lat1);
-    double dLon = degrees_to_radians(lon2 - lon1);
 
-    lat1 = degrees_to_radians(lat1);
-    lat2 = degrees_to_radians(lat2);
 
-    double a = pow(sin(dLat / 2), 2) + pow(sin(dLon / 2), 2) * cos(lat1) * cos(lat2);
-    double c = 2 * asin(sqrt(a));
 
-    return EARTH_RADIUS * c;
-}

@@ -49,7 +49,7 @@ bool Graph::addVertex(int vertex, double lat, double longi, std::string label) {
     //     std::cout << "Vertex already exists" << std::endl;
     //     return false;
     // }
-    
+
     vertices.push_back({
         vertex,
         lat,
@@ -303,5 +303,48 @@ double Graph::calculateTotalDistance(const std::vector<int> &path) {
     }
 
     return totalDistance;
+}
+
+void Graph::connect_all_nodes(){
+
+    for(int i = 0; i < vertices.size(); i++){
+        for(int j = 0; j < vertices.size(); j++){
+            if(check_if_nodes_are_connected(i, j)){
+                continue;
+            }
+            else{
+                double distance = haversine(vertices[i].lat, vertices[i].longi, vertices[j].lat, vertices[j].longi);
+                addEdge(i, j, distance);
+            }
+        }
+    }
+
+}
+
+bool Graph::check_if_nodes_are_connected(int v1, int v2){
+    for(const edgeNode& edge : vertices[v1].adj){
+        if(edge.vertex == v2){
+            return true;
+        }
+    }
+    return false;
+}
+
+
+double Graph::degrees_to_radians(double degrees){
+    return degrees * M_PI / 180;
+}
+
+double Graph::haversine(double lat1, double lon1, double lat2, double lon2){
+    double dLat = degrees_to_radians(lat2 - lat1);
+    double dLon = degrees_to_radians(lon2 - lon1);
+
+    lat1 = degrees_to_radians(lat1);
+    lat2 = degrees_to_radians(lat2);
+
+    double a = pow(sin(dLat / 2), 2) + pow(sin(dLon / 2), 2) * cos(lat1) * cos(lat2);
+    double c = 2 * asin(sqrt(a));
+
+    return EARTH_RADIUS * c;
 }
 
