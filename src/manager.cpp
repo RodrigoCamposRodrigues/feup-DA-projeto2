@@ -26,8 +26,6 @@ void Manager::initialize_graphs_with_2_files(){
             delivery_graph.addEdge(std::stoi(line[0]), std::stoi(line[1]), std::stod(line[2]));
         }
     }
-
-    delivery_graph.connect_all_nodes();   
 }
 
 void Manager::initialize_graphs_with_1_file(){
