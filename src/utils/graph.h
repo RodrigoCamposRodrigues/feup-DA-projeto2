@@ -59,8 +59,6 @@ class Graph {
 
         double triangularApproximation();
 
-        void connect_all_nodes();
-
         bool check_if_nodes_are_connected(int v1, int v2);
 
         double degrees_to_radians(double degrees);

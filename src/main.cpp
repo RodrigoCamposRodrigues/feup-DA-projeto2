@@ -4,11 +4,11 @@
 #include "manager.h"
 
 int main() {
-    Manager manager("../dataset/Real-World-Graphs/graph1/nodes.csv", "../dataset/Real-World-Graphs/graph1/edges.csv");
+    Manager manager("../dataset/Extra_Fully_Connected_Graphs/edges_900.csv");
 
-    manager.initialize_graphs_with_2_files();
-    manager.printGraph();
+    manager.initialize_graphs_with_1_file();
+    //manager.printGraph();
     //manager.backtrack_tsp();
-    //manager.triangularApproximation();
+    manager.triangularApproximation();
     return 0;
 }

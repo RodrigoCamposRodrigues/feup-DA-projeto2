@@ -285,6 +285,11 @@ double Graph::calculateTotalDistance(const std::vector<int> &path) {
         int v1 = path[i];
         int v2 = path[i + 1];
 
+        if(!check_if_nodes_are_connected(v1, v2)){
+            totalDistance = haversine(vertices[v1].lat, vertices[v1].longi, vertices[v2].lat, vertices[v2].longi);
+            continue;
+        }
+
         for (const edgeNode& edge : vertices[v1].adj) {
             if (edge.vertex == v2) {
                 totalDistance += edge.distance;
@@ -295,34 +300,22 @@ double Graph::calculateTotalDistance(const std::vector<int> &path) {
 
     //add final distance to total distance
     int final_city = path.back();
-    for(const edgeNode& edge : vertices[final_city].adj){
-        if(edge.vertex == path[0]){
-            totalDistance += edge.distance;
-            break;
+    if(!check_if_nodes_are_connected(final_city, path[0])){
+        totalDistance += haversine(vertices[final_city].lat, vertices[final_city].longi, vertices[path[0]].lat, vertices[path[0]].longi);
+    }
+    else{
+        for(const edgeNode& edge : vertices[final_city].adj){
+            if(edge.vertex == path[0]){
+                totalDistance += edge.distance;
+                break;
+            }
         }
     }
 
     return totalDistance;
 }
 
-void Graph::connect_all_nodes(){
 
-    for(int i = 0; i < vertices.size(); i++){
-        for(int j = 0; j < vertices.size(); j++){
-            if(check_if_nodes_are_connected(i, j)){
-                continue;
-            }
-            else if(i == j){
-                continue;
-            }
-            else{
-                double distance = haversine(vertices[i].lat, vertices[i].longi, vertices[j].lat, vertices[j].longi);
-                addEdge(i, j, distance);
-            }
-        }
-    }
-
-}
 
 bool Graph::check_if_nodes_are_connected(int v1, int v2){
     for(const edgeNode& edge : vertices[v1].adj){
