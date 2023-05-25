@@ -25,7 +25,9 @@ void Manager::initialize_graphs_with_2_files(){
         if(line.size() == 3){
             delivery_graph.addEdge(std::stoi(line[0]), std::stoi(line[1]), std::stod(line[2]));
         }
-    }   
+    }
+
+    delivery_graph.connect_all_nodes();   
 }
 
 void Manager::initialize_graphs_with_1_file(){
@@ -112,4 +114,8 @@ void Manager::triangularApproximation() {
     std::cout << "Minimum Distance: " << ans << std::endl;
     std::cout << "Execution Time: " << double(end - start) / CLOCKS_PER_SEC << " seconds" << std::endl;
 }
+
+
+
+
 

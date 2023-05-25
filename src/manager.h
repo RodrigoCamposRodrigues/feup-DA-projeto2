@@ -30,6 +30,10 @@ public:
 
     void triangularApproximation();
 
+    double degrees_to_radians(double degrees);
+
+    double haversine(double lat1, double lon1, double lat2, double lon2);
+
 private:
     CsvReader nodes_reader;
     CsvReader edges_reader;
