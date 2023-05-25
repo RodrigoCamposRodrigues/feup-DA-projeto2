@@ -312,6 +312,9 @@ void Graph::connect_all_nodes(){
             if(check_if_nodes_are_connected(i, j)){
                 continue;
             }
+            else if(i == j){
+                continue;
+            }
             else{
                 double distance = haversine(vertices[i].lat, vertices[i].longi, vertices[j].lat, vertices[j].longi);
                 addEdge(i, j, distance);
