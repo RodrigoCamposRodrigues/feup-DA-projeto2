@@ -7,9 +7,12 @@
 #include <algorithm>
 #include <limits>
 #include <iostream>
+#include <cmath>
 
 #include "utils/csv_reader.h"
 #include "utils/graph.h"
+
+#define EARTH_RADIUS 6371.0
 
 class Manager {
 public:
@@ -29,6 +32,10 @@ public:
     void test();
 
     void triangularApproximation();
+
+    double degrees_to_radians(double degrees);
+
+    double haversine(double lat1, double lon1, double lat2, double lon2);
 
 private:
     CsvReader nodes_reader;
