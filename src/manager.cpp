@@ -80,7 +80,9 @@ void Manager::initialize_selected(){
 
 }
 
-double Manager::backtrack_tsp(){
+void Manager::backtrack_tsp(){
+    clock_t start = clock();
+
     double min_cost = std::numeric_limits<double>::max();
     std::vector<int> path = {0}; // Start from vertex 0
     std::vector<bool> visited(delivery_graph.getNumVertices(), false);
@@ -89,15 +91,25 @@ double Manager::backtrack_tsp(){
     // Call the recursive function to find the minimum cost Hamiltonian cycle
     delivery_graph.tsp_backtrack(path, visited, min_cost, 0.0);
 
-    // Return the minimum cost
-    return min_cost;
+    clock_t end = clock();
+
+    std::cout << "Minimum Distance: " << min_cost << std::endl;
+    std::cout << "Execution Time: " << double(end - start) / CLOCKS_PER_SEC << " seconds" << std::endl;
+
 }
 
 void Manager::printGraph(){
     delivery_graph.printGraph();
 }
 
-double Manager::triangularApproximation() {
-    return delivery_graph.triangularApproximation();
+void Manager::triangularApproximation() {
+    clock_t start = clock();
+
+    double ans = delivery_graph.triangularApproximation();
+
+    clock_t end = clock();
+
+    std::cout << "Minimum Distance: " << ans << std::endl;
+    std::cout << "Execution Time: " << double(end - start) / CLOCKS_PER_SEC << " seconds" << std::endl;
 }
 

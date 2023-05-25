@@ -22,13 +22,13 @@ public:
 
     void initialize_selected(); // TODO implement
 
-    double backtrack_tsp();
+    void backtrack_tsp();
 
     void printGraph();
 
     void test();
 
-    double triangularApproximation();
+    void triangularApproximation();
 
 private:
     CsvReader nodes_reader;

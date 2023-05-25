@@ -8,7 +8,7 @@ int main() {
 
     manager.initialize_selected();
     manager.printGraph();
-    std::cout << manager.backtrack_tsp() << std::endl;
-    std::cout << manager.triangularApproximation() << std::endl;
+    manager.backtrack_tsp();
+    manager.triangularApproximation();
     return 0;
 }
