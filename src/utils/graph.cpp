@@ -49,6 +49,7 @@ bool Graph::addVertex(int vertex, double lat, double longi, std::string label) {
     //     std::cout << "Vertex already exists" << std::endl;
     //     return false;
     // }
+    
     vertices.push_back({
         vertex,
         lat,

@@ -18,9 +18,9 @@ public:
     Manager (const char *nodes_file, const char *edges_file);
     Manager (const char *f_name);
 
-    void initialize_all();
+    void initialize_graphs_with_2_files();
 
-    void initialize_selected(); // TODO implement
+    void initialize_graphs_with_1_file(); // TODO implement
 
     void backtrack_tsp();
 

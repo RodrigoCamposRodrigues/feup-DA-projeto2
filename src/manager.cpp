@@ -10,7 +10,7 @@ Manager::Manager(const char *f_name) :
     nodes_reader(f_name),
     delivery_graph(true) {}
 
-void Manager::initialize_all(){
+void Manager::initialize_graphs_with_2_files(){
     std::vector<std::string> line;
 
     while(!nodes_reader.is_eof() && !nodes_reader.is_error()){
@@ -28,7 +28,7 @@ void Manager::initialize_all(){
     }   
 }
 
-void Manager::initialize_selected(){
+void Manager::initialize_graphs_with_1_file(){
     std::vector<std::string> line;
 
     while(!edges_reader.is_eof() && !edges_reader.is_error()){

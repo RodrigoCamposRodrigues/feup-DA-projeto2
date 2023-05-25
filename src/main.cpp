@@ -6,7 +6,7 @@
 int main() {
     Manager manager("../dataset/Toy-Graphs/shipping.csv");
 
-    manager.initialize_selected();
+    manager.initialize_graphs_with_1_file();
     manager.printGraph();
     manager.backtrack_tsp();
     manager.triangularApproximation();
