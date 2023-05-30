@@ -13,7 +13,7 @@
 #include <stack>
 #include <cmath>
 
-#define EARTH_RADIUS 6371.0
+#define EARTH_RADIUS 6371000.0
 
 struct Edge{
     int origin;
@@ -32,7 +32,19 @@ class Graph {
         bool isDirected() const;
 
         // vertex exists
-        bool vertexExists(int vertexID);
+        bool vertexExists(int vertex);
+
+        //get lat
+        double getLat(int vertex) const;
+
+        //get longi
+        double getLongi(int vertex) const;
+
+        //get label
+        std::string getLabel(int vertex) const;
+
+        //get distance
+        double getDistance(int v1, int v2) const;
 
         void setVertexInfo(int vertex, double lat, double longi);
 
@@ -51,7 +63,7 @@ class Graph {
 
         int minKey(std::vector<double>& key, std::vector<bool>& inMST);
 
-        void primMST(std::vector<int>& parent);
+        std::vector<std::pair<int, int>> primMST(std::vector<int>& parent);
 
         void dfs(int current, const std::vector<int>& parent, std::vector<bool>& visited, std::stack<int>& cityStack, std::vector<int>& path);
 
@@ -64,6 +76,10 @@ class Graph {
         double degrees_to_radians(double degrees);
 
         double haversine(double lat1, double lon1, double lat2, double lon2);
+
+        std::vector<int> findOddDegreeVertices();
+
+        void findEulerianPath(int start_vertex, std::vector<int> &circuit);
 
     protected:
         int num_edges;
@@ -84,6 +100,7 @@ class Graph {
         };
 
         std::vector<vertexNode> vertices;
+
 };
 
 #endif

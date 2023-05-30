@@ -34,6 +34,27 @@ bool Graph::isDirected() const {
     return directed;
 }
 
+double Graph::getLat(int vertex) const {
+    return vertices[vertex].lat;
+}
+
+double Graph::getLongi(int vertex) const {
+    return vertices[vertex].longi;
+}
+
+std::string Graph::getLabel(int vertexID) const {
+    return vertices[vertexID].label;
+}
+
+double Graph::getDistance(int v1, int v2) const {
+    for(auto &edge : vertices[v1].adj) {
+        if(edge.vertex == v2) {
+            return edge.distance;
+        }
+    }
+    return 0;
+}
+
 /** Adiciona um vertice ao grafo.
  * Este método tem complexidade de tempo O(1).
  */
@@ -95,8 +116,17 @@ void Graph::addEdge(int v1, int v2, double distance) {
         std::cout << "Invalid vertex" << std::endl;
         return;
     }
+
+    int index = 0;
+    for(int i = 0; i < vertices.size(); i++){
+        if(vertices[i].vertex == v1){
+            index = i;
+            break;
+        }
+    }
+
     // check if edge already exists
-    for(auto e : vertices[v1].adj) {
+    for(auto e : vertices[index].adj) {
         if(e.vertex == v2) {
             std::cout << "Edge already exists" << std::endl;
             return;
@@ -225,7 +255,7 @@ int Graph::minKey(std::vector<double> &key, std::vector<bool> &inMST){
     return minIndex;
 }
 
-void Graph::primMST(std::vector<int>& parent) {
+std::vector<std::pair<int, int>> Graph::primMST(std::vector<int>& parent) {
 
     std::vector<double> key(vertices.size(), std::numeric_limits<double>::max());
     std::vector<bool> inMST(vertices.size(), false);
@@ -250,11 +280,17 @@ void Graph::primMST(std::vector<int>& parent) {
         }
     }
 
-    // Print the MST
+
+    std::vector<std::pair<int, int>> mst;
+
+    //Print the MST
     std::cout << "Minimum Spanning Tree:" << std::endl;
     for (int i = 1; i < vertices.size(); ++i) {
-        std::cout << parent[i] << " - " << i << std::endl;
+        //fill the mst
+        mst.push_back(std::make_pair(parent[i], i));
     }
+
+    return mst;
 }
 
 void Graph::dfs(int current, const std::vector<int> &parent, std::vector<bool> &visited, std::stack<int> &cityStack, std::vector<int> &path) {
@@ -286,7 +322,7 @@ double Graph::calculateTotalDistance(const std::vector<int> &path) {
         int v2 = path[i + 1];
 
         if(!check_if_nodes_are_connected(v1, v2)){
-            totalDistance = haversine(vertices[v1].lat, vertices[v1].longi, vertices[v2].lat, vertices[v2].longi);
+            totalDistance += haversine(vertices[v1].lat, vertices[v1].longi, vertices[v2].lat, vertices[v2].longi);
             continue;
         }
 
@@ -318,7 +354,14 @@ double Graph::calculateTotalDistance(const std::vector<int> &path) {
 
 
 bool Graph::check_if_nodes_are_connected(int v1, int v2){
-    for(const edgeNode& edge : vertices[v1].adj){
+    int index_v1;
+    for(int i = 0; i < vertices.size(); i++){
+        if(vertices[i].vertex == v1){
+            index_v1 = i;
+        }
+    }
+
+    for(const edgeNode& edge : vertices[index_v1].adj){
         if(edge.vertex == v2){
             return true;
         }
@@ -332,6 +375,11 @@ double Graph::degrees_to_radians(double degrees){
 }
 
 double Graph::haversine(double lat1, double lon1, double lat2, double lon2){
+
+    if(lat1 == 0 && lon1 == 0 && lat2 == 0 && lon2 == 0){
+        return 0.0;
+    }
+
     double dLat = degrees_to_radians(lat2 - lat1);
     double dLon = degrees_to_radians(lon2 - lon1);
 
@@ -342,5 +390,39 @@ double Graph::haversine(double lat1, double lon1, double lat2, double lon2){
     double c = 2 * asin(sqrt(a));
 
     return EARTH_RADIUS * c;
+}
+
+
+std::vector<int> Graph::findOddDegreeVertices(){
+
+    std::vector<int> oddDegreeVertices;
+
+    // Find vertices in MST with odd degrees
+    for (int vertex = 0; vertex < vertices.size(); ++vertex) {
+        if (vertices[vertex].adj.size() % 2 != 0) {
+            oddDegreeVertices.push_back(vertex);
+        }
+    }
+
+    return oddDegreeVertices;
+}
+
+void Graph::findEulerianPath(int start_vertex, std::vector<int> &circuit){
+    std::stack<int> stack;
+    stack.push(start_vertex);
+
+    while (!stack.empty()) {
+        int current_vertex = stack.top();
+
+        if (!vertices[current_vertex].adj.empty()) {
+            int next_vertex = vertices[current_vertex].adj.back().vertex;
+            vertices[current_vertex].adj.pop_back();
+            stack.push(next_vertex);
+        }
+        else {
+            circuit.push_back(current_vertex);
+            stack.pop();
+        }
+    }
 }
 
