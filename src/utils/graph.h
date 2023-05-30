@@ -13,7 +13,7 @@
 #include <stack>
 #include <cmath>
 
-#define EARTH_RADIUS 6371000.0
+#define EARTH_RADIUS (double)6371000.0
 
 struct Edge{
     int origin;

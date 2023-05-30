@@ -358,24 +358,27 @@ double Graph::degrees_to_radians(double degrees){
     return degrees * M_PI / 180;
 }
 
-double Graph::haversine(double lat1, double lon1, double lat2, double lon2){
-
-    if(lat1 == 0 && lon1 == 0 && lat2 == 0 && lon2 == 0){
+double Graph::haversine(double lat1, double lon1, double lat2, double lon2) {
+    if (lat1 == 0 && lon1 == 0 && lat2 == 0 && lon2 == 0) {
         return 0.0;
     }
 
-    double dLat = degrees_to_radians(lat2 - lat1);
-    double dLon = degrees_to_radians(lon2 - lon1);
+    double lat1Rad = lat1 * M_PI / 180.0;
+    double lon1Rad = lon1 * M_PI / 180.0;
+    double lat2Rad = lat2 * M_PI / 180.0;
+    double lon2Rad = lon2 * M_PI / 180.0;
 
-    lat1 = degrees_to_radians(lat1);
-    lat2 = degrees_to_radians(lat2);
+    double dLat = lat2Rad - lat1Rad;
+    double dLon = lon2Rad - lon1Rad;
 
-    double a = pow(sin(dLat / 2), 2) + pow(sin(dLon / 2), 2) * cos(lat1) * cos(lat2);
-    double c = 2 * asin(sqrt(a));
+    double a = std::sin(dLat / 2.0) * std::sin(dLat / 2.0) +
+               std::cos(lat1Rad) * std::cos(lat2Rad) *
+               std::sin(dLon / 2.0) * std::sin(dLon / 2.0);
+    double c = 2.0 * std::atan2(std::sqrt(a), std::sqrt(1.0 - a));
+    double distance = EARTH_RADIUS * c;
 
-    return EARTH_RADIUS * c;
+    return distance;
 }
-
 
 std::vector<int> Graph::findOddDegreeVertices(){
 
