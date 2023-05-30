@@ -113,7 +113,9 @@ void Manager::triangularApproximation() {
     std::cout << "Execution Time: " << double(end - start) / CLOCKS_PER_SEC << " seconds" << std::endl;
 }
 
-void Manager::test(){
+void Manager::last_function(){
+
+    clock_t start = clock();
 
     std::vector<int> parent(delivery_graph.getNumVertices(), -1);
     std::vector<std::pair<int, int>> mst = delivery_graph.primMST(parent);
@@ -125,12 +127,12 @@ void Manager::test(){
     std::vector<std::pair<int, int>> mpm = findOddDegreeVerticesAndConnect(mstGraph);
 
 
-    //print Odd Degree Vertices
-    std::cout << "Odd Degree Vertices: ";
-    for(int i = 0; i < mpm.size(); i++){
-        std::cout << mpm[i].first << " " << mpm[i].second << " ";
-    }
-    std::cout << std::endl;
+    // //print Odd Degree Vertices
+    // std::cout << "Odd Degree Vertices: ";
+    // for(int i = 0; i < mpm.size(); i++){
+    //     std::cout << mpm[i].first << " " << mpm[i].second << " ";
+    // }
+    // std::cout << std::endl;
 
     addMpmEdgesToMst(mpm, mstGraph);
 
@@ -138,11 +140,11 @@ void Manager::test(){
 
     mstGraph.findEulerianPath(0, circuit);
 
-    std::cout << "Eulerian Circuit: ";
-    for(int i = 0; i < circuit.size(); i++){
-        std::cout << circuit[i] << " ";
-    }
-    std::cout << std::endl;
+    // std::cout << "Eulerian Circuit: ";
+    // for(int i = 0; i < circuit.size(); i++){
+    //     std::cout << circuit[i] << " ";
+    // }
+    // std::cout << std::endl;
 
     std::vector<int> hamiltonian_path;
 
@@ -156,7 +158,10 @@ void Manager::test(){
 
     double result = delivery_graph.calculateTotalDistance(hamiltonian_path);
 
+    clock_t end = clock();
+
     std::cout << "Minimum Distance: " << result << std::endl;
+    std::cout << "Execution Time: " << double(end - start) / CLOCKS_PER_SEC << " seconds" << std::endl;
 }
 
 void Manager::buildMstGraph(Graph &mstGraph, std::vector<std::pair<int, int>> mst){

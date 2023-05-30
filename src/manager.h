@@ -32,7 +32,7 @@ public:
 
     double haversine(double lat1, double lon1, double lat2, double lon2);
 
-    void test();
+    void last_function();
 
     void buildMstGraph(Graph &mstGraph, std::vector<std::pair<int, int>> mst);
 

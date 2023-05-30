@@ -283,13 +283,11 @@ std::vector<std::pair<int, int>> Graph::primMST(std::vector<int>& parent) {
 
     std::vector<std::pair<int, int>> mst;
 
-    // Print the MST
+    //Print the MST
     std::cout << "Minimum Spanning Tree:" << std::endl;
     for (int i = 1; i < vertices.size(); ++i) {
         //fill the mst
         mst.push_back(std::make_pair(parent[i], i));
-        
-        std::cout << parent[i] << " - " << i << std::endl;
     }
 
     return mst;
@@ -324,7 +322,7 @@ double Graph::calculateTotalDistance(const std::vector<int> &path) {
         int v2 = path[i + 1];
 
         if(!check_if_nodes_are_connected(v1, v2)){
-            totalDistance = haversine(vertices[v1].lat, vertices[v1].longi, vertices[v2].lat, vertices[v2].longi);
+            totalDistance += haversine(vertices[v1].lat, vertices[v1].longi, vertices[v2].lat, vertices[v2].longi);
             continue;
         }
 
