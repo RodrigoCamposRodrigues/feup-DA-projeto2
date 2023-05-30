@@ -26,13 +26,22 @@ public:
 
     void printGraph();
 
-    void test();
-
     void triangularApproximation();
 
     double degrees_to_radians(double degrees);
 
     double haversine(double lat1, double lon1, double lat2, double lon2);
+
+    void test();
+
+    void buildMstGraph(Graph &mstGraph, std::vector<std::pair<int, int>> mst);
+
+    std::vector<std::pair<int, int>> findOddDegreeVerticesAndConnect(Graph &mstGraph);
+
+    void addMpmEdgesToMst(std::vector<std::pair<int, int>> mpm, Graph &mstGraph);
+
+    void getHamiltonianPath(std::vector<int> eulerian_path, std::vector<int> &hamiltonian_path);
+
 
 private:
     CsvReader nodes_reader;

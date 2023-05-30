@@ -4,11 +4,12 @@
 #include "manager.h"
 
 int main() {
-    Manager manager("../dataset/Extra_Fully_Connected_Graphs/edges_900.csv");
+    Manager manager("../dataset/Toy-Graphs/stadiums.csv");
 
     manager.initialize_graphs_with_1_file();
     //manager.printGraph();
     //manager.backtrack_tsp();
-    manager.triangularApproximation();
+    //manager.triangularApproximation();
+    manager.test();
     return 0;
 }
