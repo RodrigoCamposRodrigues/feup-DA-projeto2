@@ -88,9 +88,9 @@ void Menu::graphSelectionMenu() {
                 std::string filename;
                 std::cin >> filename;
 
-                std::string nodes_path = EXTRA_FULLY_CONNECTED_GRAPHS_PATH + filename + ".csv";
-                std::cout << "nodes_path: " << nodes_path << std::endl;
-                m = Manager(nodes_path.c_str());
+                std::string edge_path = EXTRA_FULLY_CONNECTED_GRAPHS_PATH + filename + ".csv";
+                std::cout << "nodes_path: " << edge_path << std::endl;
+                m = Manager(edge_path.c_str());
                 m.initialize_graphs_with_1_file();
                 menuState = 0;
                 break;
@@ -116,12 +116,16 @@ void Menu::algorithmSelectionMenu() {
                 exited = true;
                 break;
             case 1: {
+                std::cout << "##############################################" << std::endl;
                 m.backtrack_tsp();
+                std::cout << "##############################################" << std::endl;
                 menuState = 0;
                 break;
             }
             case 2: {
+                std::cout << "##############################################" << std::endl;
                 m.triangularApproximation();
+                std::cout << "##############################################" << std::endl;
                 menuState = 0;
                 break;
             }
