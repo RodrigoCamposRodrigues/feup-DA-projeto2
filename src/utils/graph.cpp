@@ -6,7 +6,7 @@
  * @param dir true se o grafo for direcionado, false caso contrário.
 */
 Graph::Graph(bool dir) : num_edges(0), directed(dir) {
-    vertices = std::vector<vertexNode>();
+    vertices = std::unordered_map<int, vertexNode>();
 }      
 
 // getters
@@ -34,19 +34,19 @@ bool Graph::isDirected() const {
     return directed;
 }
 
-double Graph::getLat(int vertex) const {
+double Graph::getLat(int vertex) {
     return vertices[vertex].lat;
 }
 
-double Graph::getLongi(int vertex) const {
+double Graph::getLongi(int vertex) {
     return vertices[vertex].longi;
 }
 
-std::string Graph::getLabel(int vertexID) const {
+std::string Graph::getLabel(int vertexID) {
     return vertices[vertexID].label;
 }
 
-double Graph::getDistance(int v1, int v2) const {
+double Graph::getDistance(int v1, int v2) {
     for(auto &edge : vertices[v1].adj) {
         if(edge.vertex == v2) {
             return edge.distance;
@@ -71,27 +71,22 @@ bool Graph::addVertex(int vertex, double lat, double longi, std::string label) {
     //     return false;
     // }
 
-    vertices.push_back({
+    vertices[vertex] = vertexNode {
         vertex,
         lat,
         longi,
         label,
         std::vector<edgeNode>()
-    });
-    std::sort(vertices.begin(), vertices.end(), [](const vertexNode& a, const vertexNode& b) {
-        return a.vertex < b.vertex;
-    });
+    };
+//    std::sort(vertices.begin(), vertices.end(), [](const vertexNode& a, const vertexNode& b) {
+//        return a.vertex < b.vertex;
+//    });
     return true;
 }
 
 //returns true if vertex exists and false otherwise
 bool Graph::vertexExists(int vertexID){
-    for (const auto& vertex : vertices) {
-        if (vertex.vertex == vertexID) {
-            return true;
-        }
-    }
-    return false;
+    return vertices.count(vertexID) != 0;
 }
 
 /** Muda as informações de um vertice no grafo.
@@ -106,45 +101,30 @@ void Graph::setVertexInfo(int vertex, double lat, double longi) {
  * Este método tem complexidade de tempo O(E), onde E é o número de arestas.
  */
 void Graph::addEdge(int v1, int v2, double distance) {
-
-    auto it = max_element(vertices.begin(), vertices.end(), [](const vertexNode& a, const vertexNode& b) {
-        return a.vertex < b.vertex;
-    });
-    int numVertices = it->vertex + 1;
-
-    if(v1 < 0 || v1 >= numVertices|| v2 < 0 || v2 >= numVertices) {
+    if (v1 < 0 || v2 < 0) {
         std::cout << "Invalid vertex" << std::endl;
         return;
     }
 
-    int index = 0;
-    for(int i = 0; i < vertices.size(); i++){
-        if(vertices[i].vertex == v1){
-            index = i;
-            break;
-        }
+    if (vertices.count(v1) == 0 || vertices.count(v2) == 0) {
+        std::cout << "Invalid vertex" << std::endl;
+        return;
     }
 
-    // check if edge already exists
-    for(auto e : vertices[index].adj) {
-        if(e.vertex == v2) {
+    // Check if edge already exists
+    auto& adjList = vertices[v1].adj;
+    for (const auto& e : adjList) {
+        if (e.vertex == v2) {
             std::cout << "Edge already exists" << std::endl;
             return;
         }
     }
 
-    for(int i = 0; i < vertices.size(); i++){
-        if(vertices[i].vertex == v1){
-            vertices[i].adj.emplace_back(edgeNode{v2, distance});
-        }
-    }
+    adjList.push_back(edgeNode{v2, distance});
 
-    if(directed) {
-        for(int i = 0; i < vertices.size(); i++){
-            if(vertices[i].vertex == v2){
-                vertices[i].adj.emplace_back(edgeNode{v1, distance});
-            }
-        }
+    if (directed) {
+        auto& reverseAdjList = vertices[v2].adj;
+        reverseAdjList.push_back(edgeNode{v1, distance});
         num_edges++;
     }
 
@@ -157,34 +137,41 @@ void Graph::addEdge(int v1, int v2, double distance) {
  * @param v2
  */
 void Graph::removeEdge(int v1, int v2) {
-
-    auto it = max_element(vertices.begin(), vertices.end(), [](const vertexNode& a, const vertexNode& b) {
-        return a.vertex < b.vertex;
-    });
-    int numVertices = it->vertex + 1;
-
-    if (v1 < 0 || v1 >= numVertices || v2 < 0 || v2 >= numVertices) {
+    if (vertices.count(v1) == 0 || vertices.count(v2) == 0) {
         std::cout << "Invalid vertex" << std::endl;
         return;
     }
 
-    // check if edge exists
-    bool edge_exists = false;
-    for (auto e: vertices[v1].adj) {
-        if (e.vertex == v2) {
-            edge_exists = true;
+    // Check if edge exists
+    bool edgeExists = false;
+    auto& adjList = vertices[v1].adj;
+    auto it = adjList.begin();
+    while (it != adjList.end()) {
+        if (it->vertex == v2) {
+            it = adjList.erase(it);
+            edgeExists = true;
             break;
+        } else {
+            ++it;
         }
     }
-    if (!edge_exists) {
+
+    if (!edgeExists) {
         std::cout << "Edge does not exist" << std::endl;
         return;
     }
 
-    // remove edge
-    //vertices[v1].adj.remove_if([v2](edgeNode e) { return e.vertex == v2; });
     if (!directed) {
-        //vertices[v2].adj.remove_if([v1](edgeNode e) { return e.vertex == v1; });
+        auto& reverseAdjList = vertices[v2].adj;
+        auto reverseIt = reverseAdjList.begin();
+        while (reverseIt != reverseAdjList.end()) {
+            if (reverseIt->vertex == v1) {
+                reverseIt = reverseAdjList.erase(reverseIt);
+                break;
+            } else {
+                ++reverseIt;
+            }
+        }
         num_edges--;
     }
 
@@ -209,15 +196,12 @@ void Graph::removeAdjEdges(int v) {
  */
 void Graph::printGraph()
 {
-    std::sort(vertices.begin(), vertices.end(), [](const vertexNode& a, const vertexNode& b) {
-        return a.vertex < b.vertex;
-    });
-
-    for (auto v : vertices) {
-        std::cout << "Node " << v.vertex << " (" << v.lat << ", " << v.longi << ") " << "label: " << v.label << std::endl;
-        for (auto e : v.adj) {
-            std::cout << "  -> Node " << e.vertex << " distance " << e.distance << std::endl;
+    for (auto &vertex : vertices) {
+        std::cout << vertex.first << " (" << vertex.second.lat << ", " << vertex.second.longi << ") " << vertex.second.label << ": ";
+        for (auto &edge : vertex.second.adj) {
+            std::cout << edge.vertex << " ";
         }
+        std::cout << std::endl;
     }
 }
 
