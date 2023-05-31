@@ -1,15 +1,24 @@
 #include "manager.h"
 
+/// @brief Constrói um objeto Manager.
+/// Responsável por gerenciar e chamar as funções que aplicam os algoritmos aos grafos.
+/// @param nodes_file Filepath do arquivo de nós. 
+/// @param edges_file Filepath do arquivo de arestas.
 Manager::Manager(const char *nodes_file, const char *edges_file) : 
     nodes_reader(nodes_file),
     edges_reader(edges_file),
     delivery_graph(true) {}
 
+/// @brief Constrói um objeto Manager.
+/// Responsável por gerenciar e chamar as funções que aplicam os algoritmos aos grafos.
+/// @param f_name Filepath do arquivo de nós e arestas.
 Manager::Manager(const char *f_name) : 
     edges_reader(f_name),
     nodes_reader(f_name),
     delivery_graph(true) {}
 
+/// @brief Inicializa os grafos.
+/// Deve ser chamada caso o arquivo de nós e o arquivo de arestas estejam em arquivos separados.
 void Manager::initialize_graphs_with_2_files(){
     std::vector<std::string> line;
 
@@ -28,6 +37,8 @@ void Manager::initialize_graphs_with_2_files(){
     }
 }
 
+/// @brief Inicializa os grafos.
+/// Deve ser chamada caso o arquivo de nós e o arquivo de arestas estejam em um mesmo arquivo.
 void Manager::initialize_graphs_with_1_file(){
     std::vector<std::string> line;
 
@@ -80,6 +91,8 @@ void Manager::initialize_graphs_with_1_file(){
 
 }
 
+/// @brief Corre o algoritmo de Backtracking.
+/// Imprime também o custo e o tempo de execução do algoritmo.
 void Manager::backtrack_tsp(){
     clock_t start = clock();
 
@@ -98,10 +111,13 @@ void Manager::backtrack_tsp(){
 
 }
 
+/// @brief Imprime o grafo.
 void Manager::printGraph(){
     delivery_graph.printGraph();
 }
 
+/// @brief Devolve a aproximação triangular do grafo.
+/// Imprime também o custo e o tempo de execução do algoritmo.
 void Manager::triangularApproximation() {
     clock_t start = clock();
 
@@ -113,6 +129,9 @@ void Manager::triangularApproximation() {
     std::cout << "Execution Time: " << double(end - start) / CLOCKS_PER_SEC << " seconds" << std::endl;
 }
 
+/// @brief Encontra o caminho hamiltoniano de custo mínimo.
+/// Este algoritmo tem complexidade 0(V^2) em que V é o número de vértices do grafo.
+/// Imprime também o custo e o tempo de execução do algoritmo.
 void Manager::last_function(){
 
     clock_t start = clock();
@@ -164,6 +183,9 @@ void Manager::last_function(){
     std::cout << "Execution Time: " << double(end - start) / CLOCKS_PER_SEC << " seconds" << std::endl;
 }
 
+/// @brief Constrói um grafo MST, a partir de um vetor de arestas de uma Minimum Spanning Tree.
+/// @param mstGraph Grafo MST a ser construído.
+/// @param mst Vetor de arestas de uma Minimum Spanning Tree.
 void Manager::buildMstGraph(Graph &mstGraph, std::vector<std::pair<int, int>> mst){
     for(int i = 0; i < mst.size(); i++){
         int v1 = mst[i].first;
@@ -236,6 +258,10 @@ void Manager::buildMstGraph(Graph &mstGraph, std::vector<std::pair<int, int>> ms
     }
 }
 
+/// @brief Encontra os vértices de grau ímpar de uma MST e conecta-os, formando uma MPM (Minimum Perfect Matching).
+/// Esta função tem complexidade de tempo O(n^2), onde n é o número de vértices de grau ímpar.
+/// @param mstGraph Grafo MST.
+/// @return Vetor de pares de inteiros, representando as arestas da MPM.
 std::vector<std::pair<int, int>> Manager::findOddDegreeVerticesAndConnect(Graph &mstGraph){
 
     std::vector<int> oddDegreeVertices = mstGraph.findOddDegreeVertices();
@@ -277,6 +303,10 @@ std::vector<std::pair<int, int>> Manager::findOddDegreeVerticesAndConnect(Graph 
     return mpm;
 }
 
+/// @brief Adiciona as arestas de uma MPM para um grafo MST já existente.
+/// Esta função tem complexidade de tempo O(n), onde n é o número de arestas da MPM.
+/// @param mpm Vetor de pares de inteiros que representam as arestas da MPM.
+/// @param mstGraph Grafo MST.
 void Manager::addMpmEdgesToMst(std::vector<std::pair<int, int>> mpm, Graph &mstGraph){
 
     //add mpm edges to mst
@@ -292,6 +322,10 @@ void Manager::addMpmEdgesToMst(std::vector<std::pair<int, int>> mpm, Graph &mstG
     }
 }
 
+/// @brief Gera um caminho hamiltoniano a partir de um caminho euleriano.
+/// Esta função tem complexidade de tempo O(n), onde n é o número de vértices caminho euleriano.
+/// @param eulerian_path Vetor de inteiros que representa o caminho euleriano.
+/// @param hamiltonian_path Vetor de inteiros que representa o caminho hamiltoniano.
 void Manager::getHamiltonianPath(std::vector<int> eulerian_path, std::vector<int> &hamiltonian_path){
     
      for (int vertex : eulerian_path) {

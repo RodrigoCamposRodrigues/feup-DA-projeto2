@@ -1,5 +1,12 @@
 #include "utils/graph.h"
 
+/// @brief Encontra o ciclo hamiltoniano de menor custo em um grafo.
+/// Esta função tem complexidade O(n!), onde n é o número de vértices do grafo.
+/// @param path Vetor de inteiros, onde cada inteiro é um vértice do ciclo.
+/// @param visited Vetor de booleanos, onde cada booleano indica se o vértice correspondente já foi visitado.
+/// @param min_cost Referência para o custo do ciclo hamiltoniano de menor custo encontrado até o momento.
+/// @param cost_so_far Custo do ciclo hamiltoniano parcialmente construído até o momento.
+/// @return Vetor de inteiros, onde cada inteiro é um vértice do ciclo.
 void Graph::tsp_backtrack(std::vector<int>& path, std::vector<bool>& visited, double &min_cost, double cost_so_far) {
     // Base case: if all vertices have been visited, check if the current cycle is a Hamiltonian cycle
     if (path.size() == vertices.size()) {
@@ -35,6 +42,10 @@ void Graph::tsp_backtrack(std::vector<int>& path, std::vector<bool>& visited, do
     }
 }
 
+/// @brief Calcula uma solução aproximada para o problema TSP, utilizando aproximação triangular.
+/// É construída uma MST do grafo utilizando o algoritmo de Prim, e então é feita uma DFS na MST para obter a ordem de visitação das cidades.
+/// Esta função tem complexidade O(V^2), onde V é o número de vértices do grafo.
+/// @return Distância total percorrida na solução aproximada.
 double Graph::triangularApproximation() {
     // Create the MST using Prim's algorithm
     std::vector<int> parent(vertices.size(), -1);

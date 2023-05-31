@@ -5,6 +5,7 @@
 #include "menu.h"
 #include "../manager.h"
 
+/// @brief Constrói um objeto Menu, responsável por gerenciar o menu do programa.
 Menu::Menu() : m("../dataset/Extra_Fully_Connected_Graphs/edges_900.csv") {}
 void Menu::menuLoop() {
     while(!exited) {
@@ -26,6 +27,7 @@ void Menu::menuLoop() {
     }
 }
 
+/// @brief Imprime o menu que permite selecionar diferentes grafos.
 void Menu::graphSelectionMenu() {
     while((menuState == -1) && !exited) {
         std::cout << "Select a graph:" << std::endl;
@@ -102,6 +104,7 @@ void Menu::graphSelectionMenu() {
     }
 }
 
+/// @brief Imprime o menu que permite aplicar um algoritmo a um grafo anteriormente selecionado.
 void Menu::algorithmSelectionMenu() {
     while((menuState == 0) && !exited) {
         std::cout << "Select an algorithm:" << std::endl;
