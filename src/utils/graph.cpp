@@ -34,18 +34,31 @@ bool Graph::isDirected() const {
     return directed;
 }
 
+/// @brief Retorna a latitude de um vértice.
+/// @param vertex Vértice a ser consultado.
+/// @return Latitude do vértice.
 double Graph::getLat(int vertex) {
     return vertices[vertex].lat;
 }
 
+/// @brief Retorna a longitude de um vértice.
+/// @param vertex Vértice a ser consultado.
+/// @return Longitude do vértice.
 double Graph::getLongi(int vertex) {
     return vertices[vertex].longi;
 }
 
+/// @brief Retorna o label de um vértice.
+/// @param vertexID Vértice a ser consultado.
+/// @return Label do vértice.
 std::string Graph::getLabel(int vertexID) {
     return vertices[vertexID].label;
 }
 
+/// @brief Calcula a distância entre dois vértices.
+/// @param v1 Vértice 1.
+/// @param v2 Vértice 2.
+/// @return Distância entre os vértices.
 double Graph::getDistance(int v1, int v2) {
     for(auto &edge : vertices[v1].adj) {
         if(edge.vertex == v2) {
@@ -277,6 +290,12 @@ std::vector<std::pair<int, int>> Graph::primMST(std::vector<int>& parent) {
     return mst;
 }
 
+/// @brief Corre do algoritmo de Depth First Search (DFS) para encontrar o caminho mais curto entre dois vértices.
+/// @param current Vértice atual.
+/// @param parent Vetor de pais.
+/// @param visited Vetor de visitados.
+/// @param cityStack Pilha de cidades.
+/// @param path Vetor de caminho.
 void Graph::dfs(int current, const std::vector<int> &parent, std::vector<bool> &visited, std::stack<int> &cityStack, std::vector<int> &path) {
     visited[current] = true;
     cityStack.push(current);
@@ -297,6 +316,9 @@ void Graph::dfs(int current, const std::vector<int> &parent, std::vector<bool> &
     }
 }
 
+/// @brief Calcula a distância total de um caminho.
+/// @param path Vetor de inteiros, representando o caminho.
+/// @return Retorna a distância total do caminho.
 double Graph::calculateTotalDistance(const std::vector<int> &path) {
     double totalDistance = 0.0;
 
@@ -336,7 +358,10 @@ double Graph::calculateTotalDistance(const std::vector<int> &path) {
 }
 
 
-
+/// @brief Verifica se dois vértices são conectados.
+/// @param v1 Vértice 1.
+/// @param v2 Vértice 2.
+/// @return Retorna true se os vértices são conectados, false caso contrário.
 bool Graph::check_if_nodes_are_connected(int v1, int v2){
     int index_v1;
     for(int i = 0; i < vertices.size(); i++){
@@ -353,11 +378,19 @@ bool Graph::check_if_nodes_are_connected(int v1, int v2){
     return false;
 }
 
-
+/// @brief Conversão de graus para radianos.
+/// @param degrees Graus.
+/// @return Retorna o valor em radianos.
 double Graph::degrees_to_radians(double degrees){
     return degrees * M_PI / 180;
 }
 
+/// @brief Calcula a distância entre dois pontos na superfície da Terra.
+/// @param lat1 Latitude do ponto 1.
+/// @param lon1 Longitude do ponto 1.
+/// @param lat2 Latitude do ponto 2.
+/// @param lon2 Longitude do ponto 2.
+/// @return Retorna a distância entre os dois pontos.
 double Graph::haversine(double lat1, double lon1, double lat2, double lon2) {
     if (lat1 == 0 && lon1 == 0 && lat2 == 0 && lon2 == 0) {
         return 0.0;
@@ -380,6 +413,8 @@ double Graph::haversine(double lat1, double lon1, double lat2, double lon2) {
     return distance;
 }
 
+/// @brief Econtra os vértices com grau ímpar.
+/// @return Retorna um vetor com os vértices de grau ímpar.
 std::vector<int> Graph::findOddDegreeVertices(){
 
     std::vector<int> oddDegreeVertices;
@@ -394,6 +429,10 @@ std::vector<int> Graph::findOddDegreeVertices(){
     return oddDegreeVertices;
 }
 
+/// @brief Encontra um caminho euleriano, a partir de um vértice inicial.
+/// @param start_vertex Vértice inicial.
+/// @param circuit Vetor de inteiros, representando o caminho euleriano.
+/// Esta função tem complexidade O(E), sendo E o número de arestas do grafo.
 void Graph::findEulerianPath(int start_vertex, std::vector<int> &circuit){
     std::stack<int> stack;
     stack.push(start_vertex);

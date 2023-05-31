@@ -2,6 +2,8 @@
 #include "graph.h"
 #include <iostream>
 
+/// @brief Constroí um objeto CsvReader, responsável por ler arquivos csv.
+/// @param fname Nome do arquivo csv.
 CsvReader::CsvReader(std::string fname) : file_name(fname) {
     this->file_read = std::fstream(fname);
     // this->file_write = std::fstream(fname, std::ios::app);
@@ -23,6 +25,8 @@ CsvReader::CsvReader(std::string fname) : file_name(fname) {
     }
 }
 
+/// @brief Lê uma linha do arquivo csv.
+/// @return Vetor de strings, onde cada string é um campo da linha.
 std::vector<std::string> CsvReader::read_line(){
     std::string line;
     std::vector<std::string> words;
@@ -65,10 +69,14 @@ std::vector<std::string> CsvReader::read_line(){
 //     return header;
 // }
 
+/// @brief Verifica se o arquivo csv chegou ao fim.
+/// @return True se o arquivo chegou ao fim, false caso contrário.
 bool CsvReader::is_eof() const {
     return this->file_read.eof();
 }
 
+/// @brief Verifica se houve algum erro ao abrir o arquivo csv.
+/// @return True se houve erro, false caso contrário.
 bool CsvReader::is_error() const {
     return this->error;
 }
