@@ -110,6 +110,7 @@ void Menu::algorithmSelectionMenu() {
         std::cout << "Select an algorithm:" << std::endl;
         std::cout << "1 - Backtracking" << std::endl;
         std::cout << "2 - Triangular Approximation" << std::endl;
+        std::cout << "3 - Christofides algorithm (adapted)" << std::endl;
         std::cout << "0 - Exit" << std::endl;
         std::cout << "Option: ";
         int option = -1;
@@ -128,6 +129,13 @@ void Menu::algorithmSelectionMenu() {
             case 2: {
                 std::cout << "##############################################" << std::endl;
                 m.triangularApproximation();
+                std::cout << "##############################################" << std::endl;
+                menuState = 0;
+                break;
+            }
+            case 3: {
+                std::cout << "##############################################" << std::endl;
+                m.christofides();
                 std::cout << "##############################################" << std::endl;
                 menuState = 0;
                 break;
