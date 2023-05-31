@@ -13,7 +13,7 @@
 #include <stack>
 #include <cmath>
 
-#define EARTH_RADIUS 6371000.0
+#define EARTH_RADIUS (double)6371000.0
 
 struct Edge{
     int origin;
@@ -35,16 +35,16 @@ class Graph {
         bool vertexExists(int vertex);
 
         //get lat
-        double getLat(int vertex) const;
+        double getLat(int vertex);
 
         //get longi
-        double getLongi(int vertex) const;
+        double getLongi(int vertex);
 
         //get label
-        std::string getLabel(int vertex) const;
+        std::string getLabel(int vertex);
 
         //get distance
-        double getDistance(int v1, int v2) const;
+        double getDistance(int v1, int v2);
 
         void setVertexInfo(int vertex, double lat, double longi);
 
@@ -99,7 +99,7 @@ class Graph {
             std::vector<edgeNode> adj;
         };
 
-        std::vector<vertexNode> vertices;
+        std::unordered_map<int, vertexNode> vertices;
 
 };
 
