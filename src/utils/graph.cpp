@@ -252,38 +252,44 @@ int Graph::minKey(std::vector<double> &key, std::vector<bool> &inMST){
     return minIndex;
 }
 
-std::vector<std::pair<int, int>> Graph::primMST(std::vector<int>& parent) {
 
+std::vector<std::pair<int, int>> Graph::primMST(std::vector<int>& parent) {
     std::vector<double> key(vertices.size(), std::numeric_limits<double>::max());
     std::vector<bool> inMST(vertices.size(), false);
-
     int startVertex = 0;  // Starting vertex for MST
-
     key[startVertex] = 0.0;  // Start with the first vertex
 
-    for (int count = 0; count < vertices.size() - 1; ++count) {
-        int u = minKey(key, inMST);
+    // Priority queue to store vertices with their corresponding key values
+    std::priority_queue<std::pair<double, int>, std::vector<std::pair<double, int>>, std::greater<std::pair<double, int>>> pq;
+    pq.push(std::make_pair(0.0, startVertex));
+
+    while (!pq.empty()) {
+        int u = pq.top().second;
+        pq.pop();
+
+        if (inMST[u])
+            continue;
+
         inMST[u] = true;
 
         // Update key and parent index of adjacent vertices
-        for (const edgeNode& edge : vertices[u].adj) {
+        for (const edgeNode &edge: vertices[u].adj) {
             int v = edge.vertex;
             double weight = edge.distance;
 
             if (!inMST[v] && weight < key[v]) {
                 parent[v] = u;
                 key[v] = weight;
+                pq.push(std::make_pair(weight, v));
             }
         }
     }
 
-
     std::vector<std::pair<int, int>> mst;
-
-    //Print the MST
+    // Print the MST
     std::cout << "Minimum Spanning Tree:" << std::endl;
     for (int i = 1; i < vertices.size(); ++i) {
-        //fill the mst
+        // Fill the mst
         mst.push_back(std::make_pair(parent[i], i));
     }
 
