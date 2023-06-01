@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['manager_31',['Manager',['../classManager.html',1,'Manager'],['../classManager.html#a60549e4f9fa77bab71fe839c5ef1ab80',1,'Manager::Manager(const char *nodes_file, const char *edges_file)'],['../classManager.html#a9dd3e53830c2da0b12693910660c4521',1,'Manager::Manager(const char *f_name)']]],
-  ['menu_32',['Menu',['../classMenu.html',1,'Menu'],['../classMenu.html#ad466dd83355124a6ed958430450bfe94',1,'Menu::Menu()']]]
+  ['printgraph_33',['printGraph',['../classManager.html#a4ed66873d143ab9ab7cd35eaf2d5d936',1,'Manager::printGraph()'],['../classGraph.html#a5ac05db53839e72af76cdb2bafe88b77',1,'Graph::printGraph()']]]
 ];

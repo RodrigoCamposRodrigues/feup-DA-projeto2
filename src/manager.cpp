@@ -130,7 +130,7 @@ void Manager::triangularApproximation() {
 }
 
 /// @brief Encontra o caminho hamiltoniano de custo mínimo.
-/// Este algoritmo tem complexidade 0(V^2) em que V é o número de vértices do grafo.
+/// Este algoritmo tem complexidade 0((V + E)log V) em que V é o número de vértices e E o número de edges do grafo.
 /// Imprime também o custo e o tempo de execução do algoritmo.
 void Manager::christofides(){
 
