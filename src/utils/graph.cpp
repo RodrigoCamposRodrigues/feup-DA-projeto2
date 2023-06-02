@@ -65,7 +65,13 @@ double Graph::getDistance(int v1, int v2) {
             return edge.distance;
         }
     }
-    return 0;
+    return 0.0;
+}
+
+/// @brief Retorna o vetor de vértices do grafo.
+/// @return Vetor de vértices do grafo.
+std::unordered_map<int, vertexNode> Graph::getVertices() {
+    return vertices;
 }
 
 /** Adiciona um vertice ao grafo.
@@ -144,66 +150,6 @@ void Graph::addEdge(int v1, int v2, double distance) {
     num_edges++;
 }
 
-/** Remove uma aresta do grafo.
- * Este método tem complexidade de tempo O(d_v1 + d_v2), onde d_v1 e d_v2 são os graus dos vértices v1 e v2.
- * @param v1
- * @param v2
- */
-void Graph::removeEdge(int v1, int v2) {
-    if (vertices.count(v1) == 0 || vertices.count(v2) == 0) {
-        std::cout << "Invalid vertex" << std::endl;
-        return;
-    }
-
-    // Check if edge exists
-    bool edgeExists = false;
-    auto& adjList = vertices[v1].adj;
-    auto it = adjList.begin();
-    while (it != adjList.end()) {
-        if (it->vertex == v2) {
-            it = adjList.erase(it);
-            edgeExists = true;
-            break;
-        } else {
-            ++it;
-        }
-    }
-
-    if (!edgeExists) {
-        std::cout << "Edge does not exist" << std::endl;
-        return;
-    }
-
-    if (!directed) {
-        auto& reverseAdjList = vertices[v2].adj;
-        auto reverseIt = reverseAdjList.begin();
-        while (reverseIt != reverseAdjList.end()) {
-            if (reverseIt->vertex == v1) {
-                reverseIt = reverseAdjList.erase(reverseIt);
-                break;
-            } else {
-                ++reverseIt;
-            }
-        }
-        num_edges--;
-    }
-
-    num_edges--;
-}
-
-/** Remove todas as arestas adjacentes a um vértice.
- * Este método tem complexidade de tempo O(d_v), onde d_v é o grau do vértice v.
- * @param v
- */
-void Graph::removeAdjEdges(int v) {
-    // Remove all adjacent edges going from and to v
-    for (auto e: vertices[v].adj) {
-        //vertices[e.vertex].adj.remove_if([v](edgeNode e) { return e.vertex == v; });
-        num_edges--;
-    }
-    vertices[v].adj.clear();
-}
-
 /** Imprime o grafo.
  * Este método tem complexidade de tempo O(V + E), onde V é o número de vértices e E é o número de arestas.
  */
@@ -217,41 +163,6 @@ void Graph::printGraph()
         std::cout << std::endl;
     }
 }
-
-// void Graph::test() {
-//     int nedges = 0;
-//     for(int i = -0; i < num_vertices; i++) {
-//         if(vertices[i].vertex != i) {
-//             std::cout << "vertex: " << vertices[i].vertex << " i: " << i << std::endl;
-//         }
-//         for(auto e : vertices[i].adj) {
-//             if(e.vertex < 0 || e.vertex >= num_vertices) {
-//                 std::cout << "vertex: " << e.vertex << std::endl;
-//             }
-//             nedges++;
-//         }
-//     }
-//     if(nedges != num_edges) {
-//         std::cout << "nedges: " << nedges << " num_edges: " << num_edges << std::endl;
-//     }
-//     // std::cout << nedges << std::endl;
-// }
-
-int Graph::minKey(std::vector<double> &key, std::vector<bool> &inMST){
-    double min = std::numeric_limits<double>::max();
-    int minIndex = -1;
-    int numVertices = key.size();
-
-    for (int v = 0; v < numVertices; ++v) {
-        if (!inMST[v] && key[v] < min) {
-            min = key[v];
-            minIndex = v;
-        }
-    }
-
-    return minIndex;
-}
-
 
 std::vector<std::pair<int, int>> Graph::primMST(std::vector<int>& parent) {
     std::vector<double> key(vertices.size(), std::numeric_limits<double>::max());
@@ -291,6 +202,8 @@ std::vector<std::pair<int, int>> Graph::primMST(std::vector<int>& parent) {
     for (int i = 1; i < vertices.size(); ++i) {
         // Fill the mst
         mst.push_back(std::make_pair(parent[i], i));
+        //print
+        //std::cout << parent[i] << " - " << i << std::endl;
     }
 
     return mst;
@@ -370,9 +283,11 @@ double Graph::calculateTotalDistance(const std::vector<int> &path) {
 /// @return Retorna true se os vértices são conectados, false caso contrário.
 bool Graph::check_if_nodes_are_connected(int v1, int v2){
     int index_v1;
-    for(int i = 0; i < vertices.size(); i++){
-        if(vertices[i].vertex == v1){
-            index_v1 = i;
+    //iterate through vertices to find index of v1
+    for(auto it = vertices.begin(); it != vertices.end(); ++it){
+        if(it->second.vertex == v1){
+            index_v1 = it->first;
+            break;
         }
     }
 
@@ -382,13 +297,6 @@ bool Graph::check_if_nodes_are_connected(int v1, int v2){
         }
     }
     return false;
-}
-
-/// @brief Conversão de graus para radianos.
-/// @param degrees Graus.
-/// @return Retorna o valor em radianos.
-double Graph::degrees_to_radians(double degrees){
-    return degrees * M_PI / 180;
 }
 
 /// @brief Calcula a distância entre dois pontos na superfície da Terra.
@@ -419,42 +327,36 @@ double Graph::haversine(double lat1, double lon1, double lat2, double lon2) {
     return distance;
 }
 
-/// @brief Econtra os vértices com grau ímpar.
-/// @return Retorna um vetor com os vértices de grau ímpar.
-std::vector<int> Graph::findOddDegreeVertices(){
 
-    std::vector<int> oddDegreeVertices;
+std::vector<int> Graph::nearestNeighbour(int start_vertex) {
+    std::vector<int> path;
+    std::vector<bool> visited(vertices.size(), false);
 
-    // Find vertices in MST with odd degrees
-    for (int vertex = 0; vertex < vertices.size(); ++vertex) {
-        if (vertices[vertex].adj.size() % 2 != 0) {
-            oddDegreeVertices.push_back(vertex);
+    int current_vertex = start_vertex;
+    path.push_back(current_vertex);
+    visited[current_vertex] = true;
+
+    while (path.size() < vertices.size()) {
+        int next_vertex = -1;
+        double min_distance = std::numeric_limits<double>::max();
+
+        for (const edgeNode& edge : vertices[current_vertex].adj) {
+            if (!visited[edge.vertex] && edge.distance < min_distance) {
+                next_vertex = edge.vertex;
+                min_distance = edge.distance;
+            }
         }
+
+        if (next_vertex == -1) {
+            break;
+        }
+
+        path.push_back(next_vertex);
+        visited[next_vertex] = true;
+        current_vertex = next_vertex;
     }
 
-    return oddDegreeVertices;
+    return path;
 }
 
-/// @brief Encontra um caminho euleriano, a partir de um vértice inicial.
-/// @param start_vertex Vértice inicial.
-/// @param circuit Vetor de inteiros, representando o caminho euleriano.
-/// Esta função tem complexidade O(E), sendo E o número de arestas do grafo.
-void Graph::findEulerianPath(int start_vertex, std::vector<int> &circuit){
-    std::stack<int> stack;
-    stack.push(start_vertex);
-
-    while (!stack.empty()) {
-        int current_vertex = stack.top();
-
-        if (!vertices[current_vertex].adj.empty()) {
-            int next_vertex = vertices[current_vertex].adj.back().vertex;
-            vertices[current_vertex].adj.pop_back();
-            stack.push(next_vertex);
-        }
-        else {
-            circuit.push_back(current_vertex);
-            stack.pop();
-        }
-    }
-}
 

@@ -58,13 +58,13 @@ double Graph::triangularApproximation() {
     dfs(0, parent, visited, cityStack, path);
 
     // Print the order of visited cities
-    std::cout << "Order of visited cities: ";
+    /*std::cout << "Order of visited cities: ";
     for (int i = 0; i < path.size(); ++i) {
         std::cout << path[i];
         if (i != path.size() - 1)
             std::cout << " -> ";
     }
-    std::cout << " -> 0"<< std::endl;
+    std::cout << " -> 0"<< std::endl;*/
 
     double total_distance = calculateTotalDistance(path);
 

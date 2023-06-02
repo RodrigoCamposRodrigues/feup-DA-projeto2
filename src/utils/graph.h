@@ -21,6 +21,20 @@ struct Edge{
     double distance;
 };
 
+struct edgeNode{
+    int vertex; //dest vertex
+    double distance;
+};
+
+struct vertexNode{
+    int vertex;
+    double lat;
+    double longi;
+    std::string label;
+
+    std::vector<edgeNode> adj;
+};
+
 class Graph {
     public:
         Graph(bool dir);
@@ -43,6 +57,9 @@ class Graph {
         //get label
         std::string getLabel(int vertex);
 
+        //get vertices
+        std::unordered_map<int, vertexNode> getVertices();
+
         //get distance
         double getDistance(int v1, int v2);
 
@@ -53,15 +70,9 @@ class Graph {
         // add edge from v1 to v2, and from v2 to v1 if directed
         void addEdge(int v1, int v2, double distance);
 
-        void removeEdge(int v1, int v2);
-
-        void removeAdjEdges(int v);
-
         void printGraph();
 
         void tsp_backtrack(std::vector<int>& path, std::vector<bool>& visited, double& min_cost, double cost_so_far);
-
-        int minKey(std::vector<double>& key, std::vector<bool>& inMST);
 
         std::vector<std::pair<int, int>> primMST(std::vector<int>& parent);
 
@@ -73,31 +84,14 @@ class Graph {
 
         bool check_if_nodes_are_connected(int v1, int v2);
 
-        double degrees_to_radians(double degrees);
-
         double haversine(double lat1, double lon1, double lat2, double lon2);
 
-        std::vector<int> findOddDegreeVertices();
+        std::vector<int> nearestNeighbour(int start_vertex);
 
-        void findEulerianPath(int start_vertex, std::vector<int> &circuit);
 
     protected:
         int num_edges;
         bool directed;
-
-        struct edgeNode{
-            int vertex; //dest vertex
-            double distance;
-        };
-
-        struct vertexNode{
-            int vertex;
-            double lat;
-            double longi;
-            std::string label;
-
-            std::vector<edgeNode> adj;
-        };
 
         std::unordered_map<int, vertexNode> vertices;
 
