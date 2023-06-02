@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['manager_76',['Manager',['../classManager.html#a60549e4f9fa77bab71fe839c5ef1ab80',1,'Manager::Manager(const char *nodes_file, const char *edges_file)'],['../classManager.html#a9dd3e53830c2da0b12693910660c4521',1,'Manager::Manager(const char *f_name)']]],
-  ['menu_77',['Menu',['../classMenu.html#ad466dd83355124a6ed958430450bfe94',1,'Menu']]]
+  ['nearest_5fneighbor_65',['nearest_neighbor',['../classManager.html#a84aa56ce68ee32a7a0471e0c337f75fb',1,'Manager']]],
+  ['nearestneighbour_66',['nearestNeighbour',['../classGraph.html#af8c716b8f8543b0123c970c8db116412',1,'Graph']]]
 ];

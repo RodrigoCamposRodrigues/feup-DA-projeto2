@@ -62,7 +62,6 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classGraph-members.html">List of all members</a>  </div>
@@ -71,13 +70,6 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structGraph_1_1edgeNode.html">edgeNode</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structGraph_1_1vertexNode.html">vertexNode</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a18565471ddae78ed92b97efa36fe796b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a18565471ddae78ed92b97efa36fe796b">Graph</a> (bool dir)</td></tr>
@@ -100,6 +92,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>vertexExists</b> (int
 <tr class="memitem:a346e12636b977ea4cd8e0159001c2341"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a346e12636b977ea4cd8e0159001c2341">getLabel</a> (int vertex)</td></tr>
 <tr class="memdesc:a346e12636b977ea4cd8e0159001c2341"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna o label de um vértice.  <a href="classGraph.html#a346e12636b977ea4cd8e0159001c2341">More...</a><br /></td></tr>
 <tr class="separator:a346e12636b977ea4cd8e0159001c2341"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3331bc9455b815929a69a32344ee07c6"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; int, <a class="el" href="structvertexNode.html">vertexNode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a3331bc9455b815929a69a32344ee07c6">getVertices</a> ()</td></tr>
+<tr class="memdesc:a3331bc9455b815929a69a32344ee07c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna o vetor de vértices do grafo.  <a href="classGraph.html#a3331bc9455b815929a69a32344ee07c6">More...</a><br /></td></tr>
+<tr class="separator:a3331bc9455b815929a69a32344ee07c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c2e4e7944933fcea91ad82ca95db4ff"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a4c2e4e7944933fcea91ad82ca95db4ff">getDistance</a> (int v1, int v2)</td></tr>
 <tr class="memdesc:a4c2e4e7944933fcea91ad82ca95db4ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula a distância entre dois vértices.  <a href="classGraph.html#a4c2e4e7944933fcea91ad82ca95db4ff">More...</a><br /></td></tr>
 <tr class="separator:a4c2e4e7944933fcea91ad82ca95db4ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -109,20 +104,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>vertexExists</b> (int
 <tr class="separator:a4effc7ae4ee9a5e6a59ba9fe2a41ec84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70c80e397691e6dd6197cda845502355"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a70c80e397691e6dd6197cda845502355">addEdge</a> (int v1, int v2, double distance)</td></tr>
 <tr class="separator:a70c80e397691e6dd6197cda845502355"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed8f018332a32129b078d07f621d85ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#aed8f018332a32129b078d07f621d85ff">removeEdge</a> (int v1, int v2)</td></tr>
-<tr class="separator:aed8f018332a32129b078d07f621d85ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35f399c2f36805a3a2342a7a24258127"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a35f399c2f36805a3a2342a7a24258127">removeAdjEdges</a> (int v)</td></tr>
-<tr class="separator:a35f399c2f36805a3a2342a7a24258127"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ac05db53839e72af76cdb2bafe88b77"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a5ac05db53839e72af76cdb2bafe88b77">printGraph</a> ()</td></tr>
 <tr class="separator:a5ac05db53839e72af76cdb2bafe88b77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9a32b23caef186e446990fa23bc6e6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#af9a32b23caef186e446990fa23bc6e6b">tsp_backtrack</a> (std::vector&lt; int &gt; &amp;path, std::vector&lt; bool &gt; &amp;visited, double &amp;min_cost, double cost_so_far)</td></tr>
 <tr class="memdesc:af9a32b23caef186e446990fa23bc6e6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encontra o ciclo hamiltoniano de menor custo em um grafo. Esta função tem complexidade O(n!), onde n é o número de vértices do grafo.  <a href="classGraph.html#af9a32b23caef186e446990fa23bc6e6b">More...</a><br /></td></tr>
 <tr class="separator:af9a32b23caef186e446990fa23bc6e6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9921f84df9e1490fcb71e8f11ef03f06"><td class="memItemLeft" align="right" valign="top"><a id="a9921f84df9e1490fcb71e8f11ef03f06"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>minKey</b> (std::vector&lt; double &gt; &amp;key, std::vector&lt; bool &gt; &amp;inMST)</td></tr>
-<tr class="separator:a9921f84df9e1490fcb71e8f11ef03f06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2dc0de72558da9985af2d05c2c3d0401"><td class="memItemLeft" align="right" valign="top"><a id="a2dc0de72558da9985af2d05c2c3d0401"></a>
-std::vector&lt; std::pair&lt; int, int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>primMST</b> (std::vector&lt; int &gt; &amp;parent)</td></tr>
+<tr class="memitem:a2dc0de72558da9985af2d05c2c3d0401"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; int, int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a2dc0de72558da9985af2d05c2c3d0401">primMST</a> (std::vector&lt; int &gt; &amp;parent)</td></tr>
 <tr class="separator:a2dc0de72558da9985af2d05c2c3d0401"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67e768f395541cef1272067f52e2669e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a67e768f395541cef1272067f52e2669e">dfs</a> (int current, const std::vector&lt; int &gt; &amp;parent, std::vector&lt; bool &gt; &amp;visited, std::stack&lt; int &gt; &amp;cityStack, std::vector&lt; int &gt; &amp;path)</td></tr>
 <tr class="memdesc:a67e768f395541cef1272067f52e2669e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Corre do algoritmo de Depth First Search (DFS) para encontrar o caminho mais curto entre dois vértices.  <a href="classGraph.html#a67e768f395541cef1272067f52e2669e">More...</a><br /></td></tr>
@@ -136,18 +123,11 @@ std::vector&lt; std::pair&lt; int, int &gt; &gt;&#160;</td><td class="memItemRig
 <tr class="memitem:a16093af1a5db8c17aae075fe4e272862"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a16093af1a5db8c17aae075fe4e272862">check_if_nodes_are_connected</a> (int v1, int v2)</td></tr>
 <tr class="memdesc:a16093af1a5db8c17aae075fe4e272862"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica se dois vértices são conectados.  <a href="classGraph.html#a16093af1a5db8c17aae075fe4e272862">More...</a><br /></td></tr>
 <tr class="separator:a16093af1a5db8c17aae075fe4e272862"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02f266337422ff5bbf2bf4c9472d7da4"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a02f266337422ff5bbf2bf4c9472d7da4">degrees_to_radians</a> (double degrees)</td></tr>
-<tr class="memdesc:a02f266337422ff5bbf2bf4c9472d7da4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conversão de graus para radianos.  <a href="classGraph.html#a02f266337422ff5bbf2bf4c9472d7da4">More...</a><br /></td></tr>
-<tr class="separator:a02f266337422ff5bbf2bf4c9472d7da4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b0db3dbf1368e972e7c551f6084db62"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a8b0db3dbf1368e972e7c551f6084db62">haversine</a> (double lat1, double lon1, double lat2, double lon2)</td></tr>
 <tr class="memdesc:a8b0db3dbf1368e972e7c551f6084db62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula a distância entre dois pontos na superfície da Terra.  <a href="classGraph.html#a8b0db3dbf1368e972e7c551f6084db62">More...</a><br /></td></tr>
 <tr class="separator:a8b0db3dbf1368e972e7c551f6084db62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5b904ca8e6abebb23d694d9eb2e864a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#af5b904ca8e6abebb23d694d9eb2e864a">findOddDegreeVertices</a> ()</td></tr>
-<tr class="memdesc:af5b904ca8e6abebb23d694d9eb2e864a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Econtra os vértices com grau ímpar.  <a href="classGraph.html#af5b904ca8e6abebb23d694d9eb2e864a">More...</a><br /></td></tr>
-<tr class="separator:af5b904ca8e6abebb23d694d9eb2e864a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06cee7725e5bd34056d7643bfe30148d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a06cee7725e5bd34056d7643bfe30148d">findEulerianPath</a> (int start_vertex, std::vector&lt; int &gt; &amp;circuit)</td></tr>
-<tr class="memdesc:a06cee7725e5bd34056d7643bfe30148d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encontra um caminho euleriano, a partir de um vértice inicial.  <a href="classGraph.html#a06cee7725e5bd34056d7643bfe30148d">More...</a><br /></td></tr>
-<tr class="separator:a06cee7725e5bd34056d7643bfe30148d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8c716b8f8543b0123c970c8db116412"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#af8c716b8f8543b0123c970c8db116412">nearestNeighbour</a> (int start_vertex)</td></tr>
+<tr class="separator:af8c716b8f8543b0123c970c8db116412"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -158,7 +138,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>num_edges</b></td></tr
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>directed</b></td></tr>
 <tr class="separator:a3111bb6cc59aedbc4290ed1b37668336"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0adf256e92cc0c4d1771b81842011b71"><td class="memItemLeft" align="right" valign="top"><a id="a0adf256e92cc0c4d1771b81842011b71"></a>
-std::unordered_map&lt; int, <a class="el" href="structGraph_1_1vertexNode.html">vertexNode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>vertices</b></td></tr>
+std::unordered_map&lt; int, <a class="el" href="structvertexNode.html">vertexNode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>vertices</b></td></tr>
 <tr class="separator:a0adf256e92cc0c4d1771b81842011b71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -328,33 +308,6 @@ std::unordered_map&lt; int, <a class="el" href="structGraph_1_1vertexNode.html">
 
 </div>
 </div>
-<a id="a02f266337422ff5bbf2bf4c9472d7da4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a02f266337422ff5bbf2bf4c9472d7da4">&#9670;&nbsp;</a></span>degrees_to_radians()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double Graph::degrees_to_radians </td>
-          <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>degrees</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Conversão de graus para radianos. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">degrees</td><td>Graus. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Retorna o valor em radianos. </dd></dl>
-
-</div>
-</div>
 <a id="a67e768f395541cef1272067f52e2669e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a67e768f395541cef1272067f52e2669e">&#9670;&nbsp;</a></span>dfs()</h2>
 
@@ -410,63 +363,6 @@ std::unordered_map&lt; int, <a class="el" href="structGraph_1_1vertexNode.html">
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="a06cee7725e5bd34056d7643bfe30148d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a06cee7725e5bd34056d7643bfe30148d">&#9670;&nbsp;</a></span>findEulerianPath()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Graph::findEulerianPath </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>start_vertex</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::vector&lt; int &gt; &amp;&#160;</td>
-          <td class="paramname"><em>circuit</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Encontra um caminho euleriano, a partir de um vértice inicial. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">start_vertex</td><td>Vértice inicial. </td></tr>
-    <tr><td class="paramname">circuit</td><td>Vetor de inteiros, representando o caminho euleriano. Esta função tem complexidade O(E), sendo E o número de arestas do grafo. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="af5b904ca8e6abebb23d694d9eb2e864a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af5b904ca8e6abebb23d694d9eb2e864a">&#9670;&nbsp;</a></span>findOddDegreeVertices()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; int &gt; Graph::findOddDegreeVertices </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Econtra os vértices com grau ímpar. </p>
-<dl class="section return"><dt>Returns</dt><dd>Retorna um vetor com os vértices de grau ímpar. </dd></dl>
 
 </div>
 </div>
@@ -625,6 +521,26 @@ std::unordered_map&lt; int, <a class="el" href="structGraph_1_1vertexNode.html">
 
 </div>
 </div>
+<a id="a3331bc9455b815929a69a32344ee07c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3331bc9455b815929a69a32344ee07c6">&#9670;&nbsp;</a></span>getVertices()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt; int, <a class="el" href="structvertexNode.html">vertexNode</a> &gt; Graph::getVertices </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retorna o vetor de vértices do grafo. </p>
+<dl class="section return"><dt>Returns</dt><dd>Vetor de vértices do grafo. </dd></dl>
+
+</div>
+</div>
 <a id="a8b0db3dbf1368e972e7c551f6084db62"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8b0db3dbf1368e972e7c551f6084db62">&#9670;&nbsp;</a></span>haversine()</h2>
 
@@ -695,6 +611,58 @@ std::unordered_map&lt; int, <a class="el" href="structGraph_1_1vertexNode.html">
 
 </div>
 </div>
+<a id="af8c716b8f8543b0123c970c8db116412"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8c716b8f8543b0123c970c8db116412">&#9670;&nbsp;</a></span>nearestNeighbour()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; int &gt; Graph::nearestNeighbour </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>start_vertex</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Encontra o caminho vizinho mais próximo de um determinado vértice. Esta função tem complexidade de tempo O(V + E), onde V é o número de vértices e E é o número de arestas.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">start_vertex</td><td>Índice do vértice inicial. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Retorna um vetor de inteiros, representando o caminho vizinho mais próximo. </dd></dl>
+
+</div>
+</div>
+<a id="a2dc0de72558da9985af2d05c2c3d0401"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2dc0de72558da9985af2d05c2c3d0401">&#9670;&nbsp;</a></span>primMST()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::pair&lt; int, int &gt; &gt; Graph::primMST </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>parent</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Encontra a minimum spanning tree (MST) de um grafo usando o algoritmo de Prim.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent</td><td>Referência para um vetor que armazenará os o índice pai de cada vértice na MST. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Vetor de pares de inteiros que representam as arestas da MST. </dd></dl>
+
+</div>
+</div>
 <a id="a5ac05db53839e72af76cdb2bafe88b77"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5ac05db53839e72af76cdb2bafe88b77">&#9670;&nbsp;</a></span>printGraph()</h2>
 
@@ -710,65 +678,6 @@ std::unordered_map&lt; int, <a class="el" href="structGraph_1_1vertexNode.html">
       </table>
 </div><div class="memdoc">
 <p>Imprime o grafo. Este método tem complexidade de tempo O(V + E), onde V é o número de vértices e E é o número de arestas. </p>
-
-</div>
-</div>
-<a id="a35f399c2f36805a3a2342a7a24258127"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a35f399c2f36805a3a2342a7a24258127">&#9670;&nbsp;</a></span>removeAdjEdges()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Graph::removeAdjEdges </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>v</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Remove todas as arestas adjacentes a um vértice. Este método tem complexidade de tempo O(d_v), onde d_v é o grau do vértice v. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">v</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="aed8f018332a32129b078d07f621d85ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aed8f018332a32129b078d07f621d85ff">&#9670;&nbsp;</a></span>removeEdge()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Graph::removeEdge </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>v1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>v2</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Remove uma aresta do grafo. Este método tem complexidade de tempo O(d_v1 + d_v2), onde d_v1 e d_v2 são os graus dos vértices v1 e v2. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">v1</td><td></td></tr>
-    <tr><td class="paramname">v2</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>

@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['initialize_5fgraphs_5fwith_5f1_5ffile_71',['initialize_graphs_with_1_file',['../classManager.html#a359f57d5b9f6b194d6710b33526d34f6',1,'Manager']]],
-  ['initialize_5fgraphs_5fwith_5f2_5ffiles_72',['initialize_graphs_with_2_files',['../classManager.html#ae15e7817d139adf8ee37b808819fd6d6',1,'Manager']]],
-  ['is_5feof_73',['is_eof',['../classCsvReader.html#a59db673cc9d78c8b2a951605eec1ed7d',1,'CsvReader']]],
-  ['is_5ferror_74',['is_error',['../classCsvReader.html#a591f538d040519b40c5ba01332f48282',1,'CsvReader']]],
-  ['isdirected_75',['isDirected',['../classGraph.html#a08b970ecb424505f85c4f9d632b5ab01',1,'Graph']]]
+  ['manager_63',['Manager',['../classManager.html#a60549e4f9fa77bab71fe839c5ef1ab80',1,'Manager::Manager(const char *nodes_file, const char *edges_file)'],['../classManager.html#a9dd3e53830c2da0b12693910660c4521',1,'Manager::Manager(const char *f_name)']]],
+  ['menu_64',['Menu',['../classMenu.html#ad466dd83355124a6ed958430450bfe94',1,'Menu']]]
 ];

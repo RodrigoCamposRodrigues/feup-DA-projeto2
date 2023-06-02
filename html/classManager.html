@@ -97,28 +97,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classManager.html#ac2fbf4adffe94cc5ecdd755c8e0f2743">triangularApproximation</a> ()</td></tr>
 <tr class="memdesc:ac2fbf4adffe94cc5ecdd755c8e0f2743"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devolve a aproximação triangular do grafo. Imprime também o custo e o tempo de execução do algoritmo. <br /></td></tr>
 <tr class="separator:ac2fbf4adffe94cc5ecdd755c8e0f2743"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff2a26122b4dedb6325235954f1cf540"><td class="memItemLeft" align="right" valign="top"><a id="aff2a26122b4dedb6325235954f1cf540"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>degrees_to_radians</b> (double degrees)</td></tr>
-<tr class="separator:aff2a26122b4dedb6325235954f1cf540"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22689a9ae33f012e1fe501618c0fd283"><td class="memItemLeft" align="right" valign="top"><a id="a22689a9ae33f012e1fe501618c0fd283"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>haversine</b> (double lat1, double lon1, double lat2, double lon2)</td></tr>
-<tr class="separator:a22689a9ae33f012e1fe501618c0fd283"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad55daa92753ef5e5fd571e554c13fc1a"><td class="memItemLeft" align="right" valign="top"><a id="ad55daa92753ef5e5fd571e554c13fc1a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classManager.html#ad55daa92753ef5e5fd571e554c13fc1a">christofides</a> ()</td></tr>
-<tr class="memdesc:ad55daa92753ef5e5fd571e554c13fc1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encontra o caminho hamiltoniano de custo mínimo. Este algoritmo tem complexidade 0((V + E)log V) em que V é o número de vértices e E o número de edges do grafo. Imprime também o custo e o tempo de execução do algoritmo. <br /></td></tr>
-<tr class="separator:ad55daa92753ef5e5fd571e554c13fc1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad93b66c4f803fd390ed042997076e746"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classManager.html#ad93b66c4f803fd390ed042997076e746">buildMstGraph</a> (<a class="el" href="classGraph.html">Graph</a> &amp;mstGraph, std::vector&lt; std::pair&lt; int, int &gt;&gt; mst)</td></tr>
-<tr class="memdesc:ad93b66c4f803fd390ed042997076e746"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constrói um grafo MST, a partir de um vetor de arestas de uma Minimum Spanning Tree.  <a href="classManager.html#ad93b66c4f803fd390ed042997076e746">More...</a><br /></td></tr>
-<tr class="separator:ad93b66c4f803fd390ed042997076e746"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a859c6d359753f9fe27ebeb17c5ae89b4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; int, int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classManager.html#a859c6d359753f9fe27ebeb17c5ae89b4">findOddDegreeVerticesAndConnect</a> (<a class="el" href="classGraph.html">Graph</a> &amp;mstGraph)</td></tr>
-<tr class="memdesc:a859c6d359753f9fe27ebeb17c5ae89b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encontra os vértices de grau ímpar de uma MST e conecta-os, formando uma MPM (Minimum Perfect Matching). Esta função tem complexidade de tempo O(n^2), onde n é o número de vértices de grau ímpar.  <a href="classManager.html#a859c6d359753f9fe27ebeb17c5ae89b4">More...</a><br /></td></tr>
-<tr class="separator:a859c6d359753f9fe27ebeb17c5ae89b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a138d9681725ce40fd879ecc4477c9960"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classManager.html#a138d9681725ce40fd879ecc4477c9960">addMpmEdgesToMst</a> (std::vector&lt; std::pair&lt; int, int &gt;&gt; mpm, <a class="el" href="classGraph.html">Graph</a> &amp;mstGraph)</td></tr>
-<tr class="memdesc:a138d9681725ce40fd879ecc4477c9960"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adiciona as arestas de uma MPM para um grafo MST já existente. Esta função tem complexidade de tempo O(n), onde n é o número de arestas da MPM.  <a href="classManager.html#a138d9681725ce40fd879ecc4477c9960">More...</a><br /></td></tr>
-<tr class="separator:a138d9681725ce40fd879ecc4477c9960"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07f930950d0abe6b9eef8cace9df8b17"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classManager.html#a07f930950d0abe6b9eef8cace9df8b17">getHamiltonianPath</a> (std::vector&lt; int &gt; eulerian_path, std::vector&lt; int &gt; &amp;hamiltonian_path)</td></tr>
-<tr class="memdesc:a07f930950d0abe6b9eef8cace9df8b17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gera um caminho hamiltoniano a partir de um caminho euleriano. Esta função tem complexidade de tempo O(n), onde n é o número de vértices caminho euleriano.  <a href="classManager.html#a07f930950d0abe6b9eef8cace9df8b17">More...</a><br /></td></tr>
-<tr class="separator:a07f930950d0abe6b9eef8cace9df8b17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84aa56ce68ee32a7a0471e0c337f75fb"><td class="memItemLeft" align="right" valign="top"><a id="a84aa56ce68ee32a7a0471e0c337f75fb"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classManager.html#a84aa56ce68ee32a7a0471e0c337f75fb">nearest_neighbor</a> ()</td></tr>
+<tr class="memdesc:a84aa56ce68ee32a7a0471e0c337f75fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Corre o algoritmo nearest neighbor para diferentes starting vertex. Este algoritmo tem complexidade 0(V²) em que V é o número de vértices do grafo. Imprime também o custo e o tempo de execução do algoritmo. <br /></td></tr>
+<tr class="separator:a84aa56ce68ee32a7a0471e0c337f75fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a60549e4f9fa77bab71fe839c5ef1ab80"></a>
@@ -178,145 +160,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">f_name</td><td>Filepath do arquivo de nós e arestas. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a138d9681725ce40fd879ecc4477c9960"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a138d9681725ce40fd879ecc4477c9960">&#9670;&nbsp;</a></span>addMpmEdgesToMst()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Manager::addMpmEdgesToMst </td>
-          <td>(</td>
-          <td class="paramtype">std::vector&lt; std::pair&lt; int, int &gt;&gt;&#160;</td>
-          <td class="paramname"><em>mpm</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classGraph.html">Graph</a> &amp;&#160;</td>
-          <td class="paramname"><em>mstGraph</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Adiciona as arestas de uma MPM para um grafo MST já existente. Esta função tem complexidade de tempo O(n), onde n é o número de arestas da MPM. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">mpm</td><td>Vetor de pares de inteiros que representam as arestas da MPM. </td></tr>
-    <tr><td class="paramname">mstGraph</td><td>Grafo MST. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ad93b66c4f803fd390ed042997076e746"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad93b66c4f803fd390ed042997076e746">&#9670;&nbsp;</a></span>buildMstGraph()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Manager::buildMstGraph </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classGraph.html">Graph</a> &amp;&#160;</td>
-          <td class="paramname"><em>mstGraph</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::vector&lt; std::pair&lt; int, int &gt;&gt;&#160;</td>
-          <td class="paramname"><em>mst</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Constrói um grafo MST, a partir de um vetor de arestas de uma Minimum Spanning Tree. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">mstGraph</td><td>Grafo MST a ser construído. </td></tr>
-    <tr><td class="paramname">mst</td><td>Vetor de arestas de uma Minimum Spanning Tree. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a859c6d359753f9fe27ebeb17c5ae89b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a859c6d359753f9fe27ebeb17c5ae89b4">&#9670;&nbsp;</a></span>findOddDegreeVerticesAndConnect()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; std::pair&lt; int, int &gt; &gt; Manager::findOddDegreeVerticesAndConnect </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classGraph.html">Graph</a> &amp;&#160;</td>
-          <td class="paramname"><em>mstGraph</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Encontra os vértices de grau ímpar de uma MST e conecta-os, formando uma MPM (Minimum Perfect Matching). Esta função tem complexidade de tempo O(n^2), onde n é o número de vértices de grau ímpar. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">mstGraph</td><td>Grafo MST. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Vetor de pares de inteiros, representando as arestas da MPM. </dd></dl>
-
-</div>
-</div>
-<a id="a07f930950d0abe6b9eef8cace9df8b17"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a07f930950d0abe6b9eef8cace9df8b17">&#9670;&nbsp;</a></span>getHamiltonianPath()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Manager::getHamiltonianPath </td>
-          <td>(</td>
-          <td class="paramtype">std::vector&lt; int &gt;&#160;</td>
-          <td class="paramname"><em>eulerian_path</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::vector&lt; int &gt; &amp;&#160;</td>
-          <td class="paramname"><em>hamiltonian_path</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gera um caminho hamiltoniano a partir de um caminho euleriano. Esta função tem complexidade de tempo O(n), onde n é o número de vértices caminho euleriano. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">eulerian_path</td><td>Vetor de inteiros que representa o caminho euleriano. </td></tr>
-    <tr><td class="paramname">hamiltonian_path</td><td>Vetor de inteiros que representa o caminho hamiltoniano. </td></tr>
   </table>
   </dd>
 </dl>

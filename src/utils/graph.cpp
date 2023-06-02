@@ -164,6 +164,12 @@ void Graph::printGraph()
     }
 }
 
+/**
+ * Encontra a minimum spanning tree (MST) de um grafo usando o algoritmo de Prim.
+ *
+ * @param parent Referência para um vetor que armazenará os o índice pai de cada vértice na MST.
+ * @return Vetor de pares de inteiros que representam as arestas da MST.
+ */
 std::vector<std::pair<int, int>> Graph::primMST(std::vector<int>& parent) {
     std::vector<double> key(vertices.size(), std::numeric_limits<double>::max());
     std::vector<bool> inMST(vertices.size(), false);
@@ -328,6 +334,13 @@ double Graph::haversine(double lat1, double lon1, double lat2, double lon2) {
 }
 
 
+/**
+ * Encontra o caminho vizinho mais próximo de um determinado vértice.
+ * Esta função tem complexidade de tempo O(V + E), onde V é o número de vértices e E é o número de arestas.
+ *
+ * @param start_vertex Índice do vértice inicial.
+ * @return Retorna um vetor de inteiros, representando o caminho vizinho mais próximo.
+ */
 std::vector<int> Graph::nearestNeighbour(int start_vertex) {
     std::vector<int> path;
     std::vector<bool> visited(vertices.size(), false);
